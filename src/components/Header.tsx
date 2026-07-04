@@ -1,23 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import data from "@/data/profile.json";
-import { MyResumeDoc } from "./ResumeBuilder";
 import { Download, Sun, Moon } from "lucide-react";
 
-// Dynamically import PDFDownloadLink to bypass SSR issues
-const PDFDownloadLink = dynamic(
-  () => import("@react-pdf/renderer").then((mod) => mod.PDFDownloadLink),
-  { ssr: false, loading: () => <span className="text-[10px] text-luxuryMuted font-mono">Loading builder...</span> }
-);
-
 export default function Header() {
-  const [isClient, setIsClient] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
-    setIsClient(true);
     const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
     if (savedTheme) {
       setTheme(savedTheme);
@@ -72,31 +62,16 @@ export default function Header() {
         </button>
 
         <div>
-          {isClient ? (
-            <PDFDownloadLink document={<MyResumeDoc />} fileName="Sanju_Chowdhury_Resume.pdf">
-              {/* @ts-ignore */}
-              {({ loading }) => (
-                <button
-                  disabled={loading}
-                  className="glass-panel text-luxuryGold hover:text-black hover:bg-luxuryGold text-[11px] tracking-widest uppercase py-2 px-4 rounded-full transition-all duration-500 ease-out border border-luxuryBorder hover:border-luxuryGold shadow-[0_0_15px_rgba(197,168,128,0.1)] hover:shadow-[0_0_20px_rgba(197,168,128,0.3)] cursor-pointer inline-flex items-center gap-2 font-semibold"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  {loading ? "Compiling..." : "Download Resume"}
-                </button>
-              )}
-            </PDFDownloadLink>
-          ) : (
-            <button
-              disabled
-              className="glass-panel text-luxuryGold/40 text-[11px] tracking-widest uppercase py-2 px-4 rounded-full border border-luxuryBorder/20 opacity-50 cursor-not-allowed inline-flex items-center gap-2"
-            >
-              <Download className="w-3.5 h-3.5 opacity-55" />
-              Loading...
-            </button>
-          )}
+          <a
+            href="/Sanju_Chowdhury_Product_Resume.pdf"
+            download="Sanju_Chowdhury_Product_Resume.pdf"
+            className="glass-panel text-luxuryGold hover:text-black hover:bg-luxuryGold text-[11px] tracking-widest uppercase py-2 px-4 rounded-full transition-all duration-500 ease-out border border-luxuryBorder hover:border-luxuryGold shadow-[0_0_15px_rgba(197,168,128,0.1)] hover:shadow-[0_0_20px_rgba(197,168,128,0.3)] cursor-pointer inline-flex items-center gap-2 font-semibold"
+          >
+            <Download className="w-3.5 h-3.5" />
+            Download Resume
+          </a>
         </div>
       </div>
     </header>
   );
 }
-

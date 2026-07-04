@@ -11,10 +11,28 @@
     "summary": "MBA candidate in Technology Management (IPL Bengaluru) with 1+ years building enterprise product strategy and data-driven GTM execution across India’s AI/tech ecosystem."
   },
   "skills": [
-    "SQL", "Product Road mapping", "Data Analysis", "PRD Writing", "Figma", "RICE Prioritization", 
-    "User Experience (UX)", "Market Research", "User Research", "GTM Strategy", "Product Strategy", 
-    "Jira", "Stakeholder Management", "Agile & Scrum", "Workflow Diagrams", "A/B Testing", 
-    "JTBD", "Google Analytics", "Advanced Excel", "Power BI", "Confluence", "Miro"
+    "SQL",
+    "Product Road mapping",
+    "Data Analysis",
+    "PRD Writing",
+    "Figma",
+    "RICE Prioritization",
+    "User Experience (UX)",
+    "Market Research",
+    "User Research",
+    "GTM Strategy",
+    "Product Strategy",
+    "Jira",
+    "Stakeholder Management",
+    "Agile & Scrum",
+    "Workflow Diagrams",
+    "A/B Testing",
+    "JTBD",
+    "Google Analytics",
+    "Advanced Excel",
+    "Power BI",
+    "Confluence",
+    "Miro"
   ],
   "education": [
     {
@@ -38,7 +56,13 @@
       "company": "Arroz Solutions",
       "duration": "May 2024 – June 2025",
       "description": "Contributed to the deployment of 10+ core product features, addressed and resolved 50+ application issues, and closely adhered to Agile Scrum practices to facilitate seamless team workflows.",
-      "technologies": ["React", "TypeScript", "Agile", "REST APIs", "SQL"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Agile",
+        "REST APIs",
+        "SQL"
+      ],
       "bulletPoints": [
         "Worked under the mentorship of 5+ senior engineers, contributing to the development and maintenance of 10+ application features across client projects.",
         "Assisted in debugging and resolving 50+ software issues, improving application stability and reducing support escalations.",
@@ -47,11 +71,17 @@
       ]
     },
     {
-      "role": "Flutter & .Net Developer",
+      "role": " Software Developer Intern",
       "company": "500 trips (USA Startup)",
       "duration": "Jan 2024 – Apr 2024",
       "description": "Developed cross-platform applications for a US-based travel startup.",
-      "technologies": ["Flutter", "Dart", "C# .NET", "REST APIs", "Mobile Design"],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "C# .NET",
+        "REST APIs",
+        "Mobile Design"
+      ],
       "bulletPoints": [
         "Engineered cross-platform mobile applications using Flutter and Dart, ensuring a responsive user experience across iOS and Android.",
         "Designed and integrated high-performance RESTful APIs using C# .NET to manage travel booking and user account systems.",
@@ -61,9 +91,14 @@
     {
       "role": "Software Developer Intern",
       "company": "AssetCues",
-      "duration": "2023",
+      "duration": "Oct 2023 - Dec 2024",
       "description": "Designed analytics dashboards leading to a 40% reduction in manual tracking efforts. Restructured and optimized critical APIs, yielding a 25% system performance gain.",
-      "technologies": ["SQL", "C# .NET", "Dashboards", "API Optimization"],
+      "technologies": [
+        "SQL",
+        "C# .NET",
+        "Dashboards",
+        "API Optimization"
+      ],
       "bulletPoints": [
         "Designed and developed asset monitoring modules handling data from 1,000+ tracked assets, improving real-time visibility for enterprise users.",
         "Built analytics dashboards that reduced manual reporting effort by 40% and enabled operational decision-making.",
@@ -76,7 +111,12 @@
       "company": "Retail Scan Management Services Pvt. Ltd.",
       "duration": "Jun 2021 – May 2022",
       "description": "Foundation in market dynamics and growth-oriented strategies.",
-      "technologies": ["Market Research", "B2B Sales", "GTM Strategy", "Client Relations"],
+      "technologies": [
+        "Market Research",
+        "B2B Sales",
+        "GTM Strategy",
+        "Client Relations"
+      ],
       "bulletPoints": [
         "Identified new market opportunities and strategic growth areas through deep competitive intelligence and market research.",
         "Formulated targeted outreach strategies and pitched product solutions to mid-market enterprise clients.",

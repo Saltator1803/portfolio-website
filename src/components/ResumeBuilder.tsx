@@ -252,21 +252,13 @@ export default function ResumeBuilder() {
         </p>
 
         <div className="pt-6">
-          {isClient ? (
-            <PDFDownloadLink document={<MyResumeDoc />} fileName="Sanju_Chowdhury_Resume.pdf">
-              {/* @ts-ignore */}
-              {({ loading }) => (
-                <button
-                  disabled={loading}
-                  className="px-10 py-5 rounded-full border border-luxuryGold text-luxuryGold text-xs tracking-superWide uppercase hover:bg-luxuryGold hover:text-black transition-all duration-500 font-semibold shadow-goldGlow inline-block cursor-pointer"
-                >
-                  {loading ? "Compiling Schema..." : "DOWNLOAD  RESUME "}
-                </button>
-              )}
-            </PDFDownloadLink>
-          ) : (
-            <div className="text-luxuryMuted font-mono">Initializing components...</div>
-          )}
+          <a
+            href="/Sanju_Chowdhury_Product_Resume.pdf"
+            download="Sanju_Chowdhury_Product_Resume.pdf"
+            className="px-10 py-5 rounded-full border border-luxuryGold text-luxuryGold text-xs tracking-superWide uppercase hover:bg-luxuryGold hover:text-black transition-all duration-500 font-semibold shadow-goldGlow inline-block cursor-pointer"
+          >
+            DOWNLOAD RESUME
+          </a>
         </div>
       </div>
     </section>
