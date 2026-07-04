@@ -1,0 +1,191 @@
+{
+  "profile": {
+    "name": "Sanju Chowdhury",
+    "title": "MBA Candidate (Technology Management) | Aspiring Strategy Consulting & APM | 0→1 Builder",
+    "focus": "Building enterprise product strategy and data-driven GTM execution.",
+    "email": "Sanjuchowdhury1803@gmail.com",
+    "phone": "+91 9619594303",
+    "location": "Mumbai, India",
+    "linkedin": "linkedin.com/in/sanju-chowdhury-4b6302282",
+    "github": "github.com/sanju-chowdhury",
+    "summary": "MBA candidate in Technology Management (IPL Bengaluru) with 1+ years building enterprise product strategy and data-driven GTM execution across India’s AI/tech ecosystem."
+  },
+  "skills": [
+    "SQL", "Product Road mapping", "Data Analysis", "PRD Writing", "Figma", "RICE Prioritization", 
+    "User Experience (UX)", "Market Research", "User Research", "GTM Strategy", "Product Strategy", 
+    "Jira", "Stakeholder Management", "Agile & Scrum", "Workflow Diagrams", "A/B Testing", 
+    "JTBD", "Google Analytics", "Advanced Excel", "Power BI", "Confluence", "Miro"
+  ],
+  "education": [
+    {
+      "degree": "MBA (Technology Management)",
+      "institution": "Institute of Product Leadership",
+      "duration": "Aug 2025 – Aug 2027",
+      "location": "Bengaluru",
+      "details": "CGPA: Ongoing"
+    },
+    {
+      "degree": "Master in Computer Application",
+      "institution": "Savitribai Phule Pune University (SPPU )",
+      "duration": "Jun 2022 – july 2024",
+      "location": "Pune",
+      "details": "CGPA: 8.0/10"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Associate Software Developer",
+      "company": "Arroz Solutions",
+      "duration": "May 2024 – June 2025",
+      "description": "Contributed to the deployment of 10+ core product features, addressed and resolved 50+ application issues, and closely adhered to Agile Scrum practices to facilitate seamless team workflows.",
+      "technologies": ["React", "TypeScript", "Agile", "REST APIs", "SQL"],
+      "bulletPoints": [
+        "Worked under the mentorship of 5+ senior engineers, contributing to the development and maintenance of 10+ application features across client projects.",
+        "Assisted in debugging and resolving 50+ software issues, improving application stability and reducing support escalations.",
+        "Collaborated in 20+ code reviews and sprint planning sessions, gaining hands-on experience in Agile development and industry best practices.",
+        "Supported API integration and database operations for 3+ projects, helping improve development efficiency and feature delivery timelines."
+      ]
+    },
+    {
+      "role": "Flutter & .Net Developer",
+      "company": "500 trips (USA Startup)",
+      "duration": "Jan 2024 – Apr 2024",
+      "description": "Developed cross-platform applications for a US-based travel startup.",
+      "technologies": ["Flutter", "Dart", "C# .NET", "REST APIs", "Mobile Design"],
+      "bulletPoints": [
+        "Engineered cross-platform mobile applications using Flutter and Dart, ensuring a responsive user experience across iOS and Android.",
+        "Designed and integrated high-performance RESTful APIs using C# .NET to manage travel booking and user account systems.",
+        "Collaborated in an agile remote environment, delivering updates in two-week sprint cycles to speed up feature release."
+      ]
+    },
+    {
+      "role": "Software Developer Intern",
+      "company": "AssetCues",
+      "duration": "2023",
+      "description": "Designed analytics dashboards leading to a 40% reduction in manual tracking efforts. Restructured and optimized critical APIs, yielding a 25% system performance gain.",
+      "technologies": ["SQL", "C# .NET", "Dashboards", "API Optimization"],
+      "bulletPoints": [
+        "Designed and developed asset monitoring modules handling data from 1,000+ tracked assets, improving real-time visibility for enterprise users.",
+        "Built analytics dashboards that reduced manual reporting effort by 40% and enabled operational decision-making.",
+        "Implemented backend APIs and database optimizations, improving data retrieval performance by 25% across asset management workflows.",
+        "Automated asset status reporting and alert mechanisms, reducing incident response time by 35% and improving operational efficiency."
+      ]
+    },
+    {
+      "role": "Business Development Executive",
+      "company": "Retail Scan Management Services Pvt. Ltd.",
+      "duration": "Jun 2021 – May 2022",
+      "description": "Foundation in market dynamics and growth-oriented strategies.",
+      "technologies": ["Market Research", "B2B Sales", "GTM Strategy", "Client Relations"],
+      "bulletPoints": [
+        "Identified new market opportunities and strategic growth areas through deep competitive intelligence and market research.",
+        "Formulated targeted outreach strategies and pitched product solutions to mid-market enterprise clients.",
+        "Collaborated with client success and product teams to translate client feedback into actionable feature requests."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Karigold",
+      "tagline": "Founder | 0→1 Karigar-First Gold Jewelry Platform",
+      "duration": "Jan 2026 – Present",
+      "description": "A pioneering D2C gold jewelry digital platform that directly maps verified certified karigars to modern retail customers.",
+      "bulletPoints": [
+        "Identified trust and pricing inefficiencies in India's ₹5.5L+ Cr gold jewelry market through 100+ customer interactions and analysis of 6+ leading jewelry brands; designed a D2C model connecting customers directly with certified karigars.",
+        "Validated problem-solution fit through 50+ stakeholder interviews across customers, artisans, and retailers; defined product strategy, pricing model, and core features including HUID traceability, transparent pricing, and custom jewelry design."
+      ],
+      "link": "#"
+    },
+    {
+      "title": "Nexus",
+      "tagline": "Product Lead | B2B SaaS | Skillathon – Value Proposition Design",
+      "duration": "December 2025–26",
+      "description": "A robust B2B operations and event management platform targeting the complex MICE (Meetings, Incentives, Conferences, Exhibitions) sector. Awarded 1st Place at the IPL Skillathon.",
+      "bulletPoints": [
+        "Identified fragmentation pain across India’s ₹10,000Cr+ MICE industry — built Nexus, a unified B2B event ops platform replacing WhatsApp-based coordination with centralized vendor SLA management and budget dashboards",
+        "Designed end-to-end product: value proposition, user journey maps, and GTM roadmap targeting mid-tier Indian event organisers; ranked 1st of 10 teams at IPL Skillathon, Value Proposition Design"
+      ],
+      "link": "#"
+    },
+    {
+      "title": "Parkhive",
+      "tagline": "Product Lead | Smart Parking SaaS",
+      "duration": "2025",
+      "description": "An intelligent, sensor-driven parking management and slot booking system designed to reduce city traffic congestion and optimize space utility.",
+      "bulletPoints": [
+        "Designed slot-allocation logic optimizing space utility rates by 22% across multi-story garages.",
+        "Implemented high-performance map visualizations displaying real-time occupancy status."
+      ],
+      "link": "https://hive-parking.preview.emergentagent.com/"
+    },
+    {
+      "title": "My Fitness Pal",
+      "tagline": "Developer | Health & Fitness Analytics",
+      "duration": "2024",
+      "description": "A custom health analytics client cloning and enhancing the core fitness tracking, activity log, and calorie intake visualization flows.",
+      "bulletPoints": [
+        "Developed responsive dashboard layout visualizing daily activity logs, heart rate variations, and weight goals.",
+        "Integrated interactive charts converting dietary intake logs into actionable macro-nutrient breakdowns."
+      ],
+      "link": "https://arrozsolutions.github.io/MyFitPal/#how-it-works"
+    },
+    {
+      "title": "Anthill",
+      "tagline": "Product Manager | Team Feedback & Project Ops",
+      "duration": "2025",
+      "description": "A collaborative workspace organizing project feedback loops, user story mapping, and agile sprint delivery status.",
+      "bulletPoints": [
+        "Built backlog mapping boards consolidating feature request inputs and prioritizing based on custom RICE formulas.",
+        "Designed intuitive mobile previews for testing UI layouts and sharing stakeholder review reviews."
+      ],
+      "link": "https://www.anything.com/mobile-preview/f9420417-94ce-4f60-a2bb-9611ed25b10e"
+    },
+    {
+      "title": "Solar Grid",
+      "tagline": "Developer | Interactive Grid Planner",
+      "duration": "2024",
+      "description": "An interactive, visual grid manager for analyzing solar panel layout density, solar capture rates, and energy generation output.",
+      "bulletPoints": [
+        "Engineered layout canvas mapping solar panel alignment and shadow zones under multiple sunlight angles.",
+        "Calculated generation potential models estimating monthly electricity output dynamically based on sunlight conditions."
+      ],
+      "link": "https://468c1755-91ae-4312-b8a7-98be28b4979e.web.createdevserver.com/"
+    },
+    {
+      "title": "Notion Case Study",
+      "tagline": "Product Strategist | Feature Adoption Teardown",
+      "duration": "2025",
+      "description": "A comprehensive product teardown analyzing user onboarding friction and proposing dynamic team templates to lift day-7 cohort activation.",
+      "bulletPoints": [
+        "Evaluated the first-mile onboarding flow to locate drop-off steps where workspace template discovery fails.",
+        "Designed interactive template prompts to guide new workspaces toward collaborative documentation setup."
+      ],
+      "link": "https://notion.so"
+    },
+    {
+      "title": "Starbucks Case Study",
+      "tagline": "UX Researcher | Mobile Loyalty Experience",
+      "duration": "2025",
+      "description": "UX research study examining the Starbucks mobile ordering loop, identifying cognitive load friction points, and proposing UX layout updates.",
+      "bulletPoints": [
+        "Conducted cognitive walkthroughs of the custom drink personalization drawer to reduce order path drop-offs.",
+        "Prototyped simplified payment flow models integrating instant-loyalty reward tracking modules."
+      ],
+      "link": "https://starbucks.com"
+    },
+    {
+      "title": "Blinkit Case Study",
+      "tagline": "GTM Strategist | Quick-Commerce Expansion",
+      "duration": "2025",
+      "description": "GTM strategy detailing expansion models into tier-2 cities, optimizing dark store delivery routes, and pricing loops.",
+      "bulletPoints": [
+        "Structured logistics deployment models analyzing optimal geographic placement parameters for sub-10 minute dark stores.",
+        "Drafted product roadmap features for dynamic bundling models to increase average order values in low-density zones."
+      ],
+      "link": "https://blinkit.com"
+    }
+  ],
+  "certifications": [
+    "McKinsey Forward Program -McKinsey.org"
+  ]
+}

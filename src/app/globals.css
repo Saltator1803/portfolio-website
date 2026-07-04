@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-luxuryGold: var(--luxuryGold);
+  --color-luxuryMuted: var(--luxuryMuted);
+  --color-luxuryBorder: var(--luxuryBorder);
+
+  --font-sans: var(--font-sans), "Geist", "Inter", sans-serif;
+
+  --tracking-superWide: 0.25em;
+  --tracking-ultraWide: 0.4em;
+
+  --shadow-goldGlow: 0 0 25px var(--luxuryBorder);
+}
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  --luxuryGold: #C5A880;
+  --luxuryMuted: #8F8F8F;
+  --luxuryBorder: rgba(197, 168, 128, 0.15);
+  --glass-bg: rgba(10, 10, 10, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+.light {
+  --background: #fcfbfa;
+  --foreground: #1c1917;
+  --luxuryGold: #8c6d4f;
+  --luxuryMuted: #6b6661;
+  --luxuryBorder: rgba(140, 109, 79, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-family: 'Geist', 'Inter', sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Lenis Custom Smooth Scroll Styling */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom High-End Glassmorphism */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  transition: background 0.4s ease, border 0.4s ease;
+}
+
+.gold-border-glow:hover {
+  border-color: var(--luxuryGold);
+  box-shadow: 0 0 20px var(--luxuryBorder);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
