@@ -140,7 +140,7 @@
       "solutionTradeoffs": "Defined product strategy for a direct-to-consumer marketplace with HUID traceability, custom jewelry design, and fair pay for verified karigars. Decided not to build a custom payment gateway initially, opting to integrate off-the-shelf UPI to prioritize launch speed.",
       "expectedOutcome": "Hypothesized to lower consumer premiums by 15% while doubling artisan earnings compared to traditional retail channels.",
       "whatToTestNext": "Deploy a lightweight landing page with high-fidelity custom design examples to measure email signup rates and deposit commitments.",
-      "link": "#"
+      "link": "https://karigold.vercel.app/"
     },
     {
       "title": "Nexus",
@@ -154,7 +154,7 @@
       "solutionTradeoffs": "Proposed a unified SaaS platform with central SLA tracking, dynamic vendor dashboards, and instant budget alerts. Deferred building real-time messaging, prioritizing vendor dashboard access instead. Awarded 1st place of 10 teams at IPL Skillathon.",
       "expectedOutcome": "Estimated to save up to 12 hours of manual sync time per event week and reduce budget leakages by 5%.",
       "whatToTestNext": "Run a closed beta with 3 local event organizing agencies using an interactive Figma prototype to validate user path completion rates.",
-      "link": "#"
+      "link": "https://ishandave-main.github.io/Nexus-event/"
     },
     {
       "title": "Parkhive",
@@ -186,30 +186,30 @@
     },
     {
       "title": "Anthill",
-      "tagline": "Product Manager | Team Feedback & Project Ops",
+      "tagline": "Product Manager | AI Conference Companion",
       "duration": "2025",
-      "description": "A collaborative workspace organizing project feedback loops, user story mapping, and agile sprint delivery status.",
+      "description": "An AI-powered conference companion designed to help attendees maximize the value of professional events through personalized recommendations and intelligent networking.",
       "isIndependent": false,
-      "context": "Agile teams face project drift due to misaligned priorities between customer support requests and engineering backlogs.",
-      "problem": "Critical customer feedback takes weeks to get filtered into the developer backlog, leading to churn and delayed updates.",
-      "process": "Audited Jira backlog prioritization flows and mapped timeline bottlenecks between support tickets and product specifications.",
-      "solutionTradeoffs": "Designed centralized backlog mapping boards prioritizing items automatically via custom RICE framework weights. Excluded automatic Slack triggers, focusing instead on dashboard prioritization metrics.",
-      "expectedOutcome": "Targeted a 30% reduction in lead time for shipping high-priority customer feature requests.",
-      "whatToTestNext": "Integrate customer support ticketing APIs directly to measure RICE calculation speed and stakeholder review ratings.",
+      "context": "Traditional conferences struggle with low attendee engagement and high friction in networking, leading to poor event ROI.",
+      "problem": "Attendees waste hours searching through large agendas and struggle to find high-value networking connections.",
+      "process": "Analyzed event navigation paths, designed recommendation models matching user profiles with agendas, and interviewed organizers.",
+      "solutionTradeoffs": "Proposed a unified mobile experience integrating session recommendations, smart attendee matching, and live analytics dashboards. Prioritized recommendation quality over instant messaging.",
+      "expectedOutcome": "Aims to significantly increase networking quality, session attendance rates, and overall event ROI for attendees.",
+      "whatToTestNext": "Run a live pilot with 100 beta users at a regional tech summit to measure recommendation click-through rates and feedback scores.",
       "link": "https://www.anything.com/mobile-preview/f9420417-94ce-4f60-a2bb-9611ed25b10e"
     },
     {
       "title": "Solar Grid",
-      "tagline": "Developer | Interactive Grid Planner",
+      "tagline": "Developer | P2P Energy Marketplace",
       "duration": "2024",
-      "description": "An interactive, visual grid manager for analyzing solar panel layout density, solar capture rates, and energy generation output.",
+      "description": "A peer-to-peer renewable energy marketplace enabling households and businesses with surplus solar energy to trade electricity directly with nearby consumers.",
       "isIndependent": true,
-      "context": "Solar installers spend hours drawing placement grids and calculating shadows manually during sales pitches.",
-      "problem": "Manual placement grids result in a 10% discrepancy in solar potential, causing post-installation complaints and cost overruns.",
-      "process": "Modeled shadow zone vectors and sunlight angle variations using HTML5 canvas and geometric math equations.",
-      "solutionTradeoffs": "Engineered a drag-and-drop solar placement canvas that updates generation output and shadow zones instantly. Decided to simulate sunlight angles geometrically rather than fetching raw weather API curves, saving 3 weeks of API setup.",
-      "expectedOutcome": "Estimated to cut sales-pitch proposal preparation times from 3 hours to 10 minutes.",
-      "whatToTestNext": "Integrate geographical mapping APIs to pull local historical weather patterns and refine solar calculations.",
+      "context": "Centralized power grids fail to maximize local surplus solar utilization, creating inefficiencies and high costs for end consumers.",
+      "problem": "Surplus solar producers have no direct method to sell excess energy to neighbors, receiving low feed-in tariffs from utilities.",
+      "process": "Mapped dynamic pricing algorithms, designed local microgrid transaction ledgers, and modeled carbon offset metrics.",
+      "solutionTradeoffs": "Built a decentralized energy trading framework with dynamic pricing, grid health meters, and community impact graphs. Prioritized the simulation ledger over battery hardware APIs.",
+      "expectedOutcome": "Facilitates clean local trading, reduces centralized grid reliance, and improves local community solar economics.",
+      "whatToTestNext": "Incorporate simulated battery buffer models to assess energy storage trade efficiency during peak discharge periods.",
       "link": "https://468c1755-91ae-4312-b8a7-98be28b4979e.web.createdevserver.com/"
     },
     {

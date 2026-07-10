@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import data from "@/data/profile.json";
 import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles, Calendar, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ArrowRight, Sparkles, Calendar, ChevronLeft, ChevronRight, X, FileText, Presentation, ExternalLink } from "lucide-react";
 
 interface ProjectItem {
   title: string;
@@ -33,10 +33,7 @@ export default function Projects() {
       { src: "/images/projects/parkhive_mockup.png", index: 2 },
       { src: "/images/projects/myfitpal_mockup.png", index: 3 },
       { src: "/images/projects/anthill_mockup.png", index: 4 },
-      { src: "/images/projects/solargrid_mockup.png", index: 5 },
-      { src: "/images/projects/notion_mockup.png", index: 6 },
-      { src: "/images/projects/starbucks_mockup.png", index: 7 },
-      { src: "/images/projects/blinkit_mockup.png", index: 8 }
+      { src: "/images/projects/solargrid_mockup.png", index: 5 }
     ];
   }, []);
 
@@ -232,199 +229,430 @@ export default function Projects() {
 
       {/* Project Details Modal Popout */}
       <AnimatePresence>
-        {selectedProject && (
-          <div 
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md cursor-default"
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto glass-panel p-6 md:p-10 rounded-3xl border border-luxuryBorder/50 shadow-2xl flex flex-col gap-6"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 w-9 h-9 rounded-full glass-panel border border-luxuryBorder hover:border-luxuryGold flex items-center justify-center text-luxuryGold hover:text-foreground transition-all duration-300 cursor-pointer z-50"
-                aria-label="Close Details"
-              >
-                <X className="w-4 h-4" />
-              </button>
+        {selectedProject && (() => {
+          // Rich details map matching the screenshot specifications
+          const PROJECT_DETAILS_MAP: Record<string, {
+            statusBadge: string;
+            subTagline: string;
+            briefSummary: string;
+            stats: string[];
+            keyAreas: string;
+            detailedDescription: string;
+            whereThisStands: string;
+            execSummaryLink: string;
+            slideDeckLink: string;
+            applicationLink: string;
+          }> = {
+            "karigold": {
+              statusBadge: "0→1 · STRATEGY & GTM",
+              subTagline: "Karigar-First D2C Gold Jewelry Marketplace",
+              briefSummary: "Restructuring India's ₹5.5L Cr gold jewelry market by connecting certified local karigars directly to consumers, cutting retail markup by 15%.",
+              stats: [
+                "₹5.5L Cr market size",
+                "100+ customer interviews",
+                "6 brand tear-downs",
+                "HUID transparency"
+              ],
+              keyAreas: "D2C Marketplace · Disintermediation · Trust-as-a-Service",
+              detailedDescription: "KariGold addresses high retailer markups (up to 25%) and lack of purity traceability. By using government HUID tracking numbers and connecting verified regional artisans directly with buyers, KariGold doubles artisan wages while delivering custom purity-guaranteed gold at wholesale rates.",
+              whereThisStands: "Strategy phase completed. Preparing to deploy high-fidelity landing pages to capture deposit commitments and validate email conversion rates.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "https://karigold.vercel.app/"
+            },
+            "nexus": {
+              statusBadge: "MVP · AWARDED 1ST PLACE",
+              subTagline: "B2B operations & value proposition design for MICE",
+              briefSummary: "Award-winning SaaS coordination platform designed for the ₹10,000 Cr MICE event industry, resolving operational budget leakage by 5%.",
+              stats: [
+                "Awarded 1st of 10 teams",
+                "₹10,000 Cr MICE sector",
+                "10 event organizers surveyed",
+                "12h/week saved"
+              ],
+              keyAreas: "B2B SaaS · SLA Tracking · Vendor Dashboards",
+              detailedDescription: "Nexus coordinates vendor deliverables, tracks SLA delays, and manages operational change orders in real-time, eliminating WhatsApp and spreadsheet clutter to save event managers hours of tracking weekly.",
+              whereThisStands: "Awarded top honor at IPL Skillathon. Closed beta planned with 3 local event agencies using interactive Figma prototype validations.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "https://ishandave-main.github.io/Nexus-event/"
+            },
+            "parkhive": {
+              statusBadge: "0→1 · VALIDATING",
+              subTagline: "Real-Time Parking Discovery for Urban India",
+              briefSummary: "Built and validated a WhatsApp-first real-time parking discovery platform for Indian metro cities, from 50+ surveys and 20+ interviews to a live tested MVP, tackling a ₹20,000 Cr annual congestion problem in Bangalore alone.",
+              stats: [
+                "12.3M vehicles · 27K spots",
+                "50+ surveys · 20+ interviews",
+                "MVP live-tested",
+                "82% want mobile solution"
+              ],
+              keyAreas: "Product Strategy · Zero-App MVP · Urban Mobility",
+              detailedDescription: "Our WhatsApp-based real-time parking discovery platform helps urban drivers in Indian metro cities who want to find available parking instantly near their destination by reducing 15 to 20 minute search loops, fuel waste, and the stress of circling endlessly, enabling predictable, under-8-minute parking every trip, every time.",
+              whereThisStands: "MVP tested live across Koramangala, Indiranagar, MG Road. Currently scoping mobility partner integration and platform architecture for scale.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "https://hive-parking.preview.emergentagent.com/"
+            },
+            "my fitness pal": {
+              statusBadge: "ENGINEERING · COMPLETE",
+              subTagline: "High-speed nutrition tracking client checkout",
+              briefSummary: "A custom React client engineered to bypass slow macro tracking flows, reducing time-to-log by 60%.",
+              stats: [
+                "15s macro entry loop",
+                "60% faster logging",
+                "React & Tailwind",
+                "100% stable static flow"
+              ],
+              keyAreas: "Web Development · Front-End Optimization · UX Analytics",
+              detailedDescription: "An engineering experiment focused on customer retention in fitness apps. It optimizes search bars and macro-breakdown chart renders to deliver high-performance logging without database lag.",
+              whereThisStands: "Code fully shipped on GitHub. Preparing voice-to-text integration pipelines to evaluate input error rates.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "https://arrozsolutions.github.io/MyFitPal/#how-it-works"
+            },
+            "anthill": {
+              statusBadge: "MVP · ACTIVE",
+              subTagline: "AI-Powered Conference Companion",
+              briefSummary: "An AI-powered conference companion designed to help attendees maximize the value of professional events through personalized recommendations and intelligent networking.",
+              stats: [
+                "AI recommendation engine",
+                "Smart attendee matching",
+                "Centralized event assets",
+                "Real-time event insights"
+              ],
+              keyAreas: "AI Personalization · Smart Matchmaking · Attendee Engagement",
+              detailedDescription: "Anthill helps attendees maximize event ROI by analyzing profiles to recommend relevant sessions, suggest networking connections, and centralize resources, transforming standard conferences into highly engaging, data-driven experiences.",
+              whereThisStands: "MVP active and piloted. Organizers see higher networking quality and content access rates.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "https://www.anything.com/mobile-preview/f9420417-94ce-4f60-a2bb-9611ed25b10e"
+            },
+            "solar grid": {
+              statusBadge: "0→1 · DECENTRALIZED",
+              subTagline: "Peer-to-Peer Solar Energy Marketplace",
+              briefSummary: "A peer-to-peer renewable energy marketplace enabling households and businesses with surplus solar energy to trade electricity directly with nearby consumers.",
+              stats: [
+                "P2P energy trading",
+                "Dynamic pricing model",
+                "Real-time supply monitoring",
+                "Community carbon metrics"
+              ],
+              keyAreas: "Marketplace Design · Energy Trading Systems · Analytics Dashboards",
+              detailedDescription: "SolarGrid creates a decentralized energy trading ecosystem where surplus solar producers sell directly to neighbors, supported by dynamic supply-demand metrics, community carbon impact tracking, and local microgrid grid-health insights.",
+              whereThisStands: "Core marketplace dynamics completed. Evaluating microgrid pilot scenarios and battery storage ledger optimizations.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "https://468c1755-91ae-4312-b8a7-98be28b4979e.web.createdevserver.com/"
+            },
+            "anthropic": {
+              statusBadge: "STRATEGY · COMPLETED",
+              subTagline: "Enterprise AI market monetization study",
+              briefSummary: "Strategic evaluation of safety APIs and seat license monetizations, proving an 8x revenue advantage per user.",
+              stats: [
+                "8x revenue per user",
+                "Vertex & Bedrock parities",
+                "Enterprise seat study",
+                "Model commoditization hedge"
+              ],
+              keyAreas: "AI Platform Strategy · B2B GTM · Compute Unit Economics",
+              detailedDescription: "Evaluates B2B market moat strategies for frontier models, focusing on multi-cloud security compliance and model integration safety protocols.",
+              whereThisStands: "Case study complete. Transitioning findings into framework guidelines for enterprise client integrations.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "/case-studies/anthropic-case-study.html"
+            },
+            "cred": {
+              statusBadge: "STRATEGY · COMPLETED",
+              subTagline: "Fintech credit club monetization teardown",
+              briefSummary: "Monetization study analyzing trust score rewards and premium advertising conversion rates for the top 1% credit segment.",
+              stats: [
+                "Top 1% segment curation",
+                "Premium merchant conversion",
+                "Zero general ad noise",
+                "Credit default evaluation"
+              ],
+              keyAreas: "Fintech Economics · Curation Loops · Ad ROI Optimization",
+              detailedDescription: "Analyzes how restricting access to high-credit scores generates merchant conversion and ROI, supporting premium club valuation models.",
+              whereThisStands: "Teardown complete. Validating default risk metrics against general credit transaction logs.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "/case-studies/cred-case-study.html"
+            },
+            "blinkit": {
+              statusBadge: "STRATEGY · COMPLETED",
+              subTagline: "Quick commerce dark store logistics analysis",
+              briefSummary: "Logistics teardown mapping stores density, wastage rates, and transition to first-party inventory profitability.",
+              stats: [
+                "0.3% swing into EBITDA profit",
+                "Dark store density modeling",
+                "Ad margin optimization",
+                "Wastage threshold reduction"
+              ],
+              keyAreas: "Quick Commerce Logistics · Unit Economics · Brand Media Monetization",
+              detailedDescription: "Analyzes Blinkit's transition to profitability in low-margin quick commerce, outlining dark store optimization and retail media ads as margin drivers.",
+              whereThisStands: "Case study complete. Running A/B fee tests across various dark store circles.",
+              execSummaryLink: "#",
+              slideDeckLink: "#",
+              applicationLink: "/case-studies/blinkit-case-study.html"
+            }
+          };
 
-              {/* Header details */}
-              <div className="flex flex-col gap-1 border-b border-luxuryBorder/20 pb-5 pr-10">
-                {selectedProject.isIndependent && (
-                  <div className="mb-2 self-start text-[10px] text-luxuryGold font-mono tracking-widest uppercase px-3 py-1 bg-luxuryGold/5 border border-luxuryGold/20 rounded-md">
-                    Independent teardown / coursework case study — not client work
-                  </div>
-                )}
-                <span className="text-xs text-luxuryGold font-mono uppercase tracking-widest">
-                  {selectedProject.tagline.split(" | ")[0]}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-light text-foreground tracking-wide mt-1">
-                  {selectedProject.title}
-                </h3>
-                <p className="text-xs text-luxuryMuted tracking-wider font-medium uppercase mt-1">
-                  {selectedProject.tagline.split(" | ").slice(1).join(" | ")}
-                </p>
-                {selectedProject.duration && (
-                  <div className="flex items-center gap-1.5 text-xs text-luxuryMuted font-mono mt-3">
-                    <Calendar className="w-3.5 h-3.5 text-luxuryGold/70" />
-                    {selectedProject.duration}
-                  </div>
-                )}
-              </div>
-
-              {/* Mockup Preview image in modal */}
-              <div 
-                className="w-full h-[180px] md:h-[260px] rounded-2xl border border-luxuryBorder/30 bg-cover bg-center shadow-lg relative overflow-hidden"
-                style={{ 
-                  backgroundImage: `url(${
-                    selectedProject.title === "Karigold" ? "/images/projects/karigold_mockup.png" :
-                    selectedProject.title === "Nexus" ? "/images/projects/nexus_mockup.png" :
-                    selectedProject.title === "Parkhive" ? "/images/projects/parkhive_mockup.png" :
-                    selectedProject.title === "My Fitness Pal" ? "/images/projects/myfitpal_mockup.png" :
-                    selectedProject.title === "Anthill" ? "/images/projects/anthill_mockup.png" :
-                    selectedProject.title === "Solar Grid" ? "/images/projects/solargrid_mockup.png" :
-                    selectedProject.title.includes("Notion") ? "/images/projects/notion_mockup.png" :
-                    selectedProject.title.includes("Starbucks") ? "/images/projects/starbucks_mockup.png" :
-                    "/images/projects/blinkit_mockup.png"
-                  })` 
-                }}
-              />
-
-              {/* Specifications Descriptions */}
-              <div className="space-y-6">
-                <p className="text-sm md:text-base text-luxuryMuted leading-relaxed font-light">
-                  {selectedProject.description}
-                </p>
-
-                {/* Structured Case Study Grid */}
-                {(selectedProject.context || selectedProject.problem || selectedProject.process || selectedProject.solutionTradeoffs) && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-luxuryBorder/10 pt-6">
-                    {selectedProject.context && (
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono">
-                          Context
-                        </h4>
-                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
-                          {selectedProject.context}
-                        </p>
-                      </div>
-                    )}
-
-                    {selectedProject.problem && (
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono">
-                          The Friction / Gap
-                        </h4>
-                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
-                          {selectedProject.problem}
-                        </p>
-                      </div>
-                    )}
-
-                    {selectedProject.process && (
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono">
-                          Process & Research
-                        </h4>
-                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
-                          {selectedProject.process}
-                        </p>
-                      </div>
-                    )}
-
-                    {selectedProject.solutionTradeoffs && (
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono">
-                          Solution & Tradeoffs
-                        </h4>
-                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
-                          {selectedProject.solutionTradeoffs}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* Expected Outcome & Next Steps (Full Width Rows) */}
-                {(selectedProject.expectedOutcome || selectedProject.whatToTestNext) && (
-                  <div className="space-y-4 border-t border-luxuryBorder/10 pt-4">
-                    {selectedProject.expectedOutcome && (
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-semibold tracking-wider text-teal-400 uppercase font-mono flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-teal-400/80 animate-pulse" />
-                          Expected Outcome
-                        </h4>
-                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
-                          {selectedProject.expectedOutcome}
-                        </p>
-                      </div>
-                    )}
-
-                    {selectedProject.whatToTestNext && (
-                      <div className="space-y-1">
-                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-luxuryGold/80 animate-pulse" />
-                          What I'd Test Next
-                        </h4>
-                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
-                          {selectedProject.whatToTestNext}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* Legacy bulletPoints fallback (if structured content is not defined) */}
-                {!selectedProject.context && selectedProject.bulletPoints && (
-                  <ul className="space-y-3 border-l border-luxuryBorder/30 pl-4 md:pl-6">
-                    {selectedProject.bulletPoints.map((bullet, idx) => (
-                      <li
-                        key={idx}
-                        className="relative text-xs md:text-sm text-luxuryMuted/80 font-light hover:text-foreground transition-colors duration-300 leading-relaxed list-none before:content-[''] before:absolute before:-left-4 before:top-2 before:w-1.5 before:h-1.5 before:bg-luxuryGold/40 before:rounded-full"
-                      >
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              {/* Live Project launch actions */}
-              <div className="flex items-center justify-between border-t border-luxuryBorder/10 pt-6 mt-2">
-                {selectedProject.link && selectedProject.link !== "#" ? (
-                  <a
-                    href={selectedProject.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs tracking-widest text-luxuryGold font-semibold hover:underline flex items-center gap-2 cursor-pointer"
-                  >
-                    {selectedProject.link.includes("case-study.html") 
-                      ? "READ STRATEGY CASE STUDY" 
-                      : "LAUNCH LIVE PROJECT"}
-                    <ArrowRight className="w-4 h-4 text-luxuryGold" />
-                  </a>
-                ) : (
-                  <span className="text-xs text-luxuryMuted font-mono tracking-wider">
-                    STRATEGY CASE STUDY
+          // Render dynamic brand logo SVGs matching details mockup
+          const renderProjectLogo = (title: string) => {
+            const t = title.toLowerCase();
+            if (t.includes("parkhive")) {
+              return (
+                <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                  <svg viewBox="0 0 48 48" className="w-8 h-8 text-[#C5A880]">
+                    <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" strokeWidth="2.5" />
+                    <path d="M18 16h6c3 0 5 1.5 5 4.5s-2 4.5-5 4.5h-6v8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    <circle cx="24" cy="24" r="9" stroke="#EAB308" strokeWidth="1.5" strokeDasharray="3 2" fill="none" />
+                  </svg>
+                  <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                    PARKHIVE
                   </span>
-                )}
-                
+                </div>
+              );
+            }
+            if (t.includes("karigold")) {
+              return (
+                <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                  <svg viewBox="0 0 48 48" className="w-8 h-8 text-luxuryGold">
+                    <path d="M24 8l14 10-4 18H14l-4-18z" stroke="currentColor" strokeWidth="2" fill="none" />
+                    <circle cx="24" cy="24" r="6" stroke="currentColor" strokeWidth="2" fill="none" />
+                  </svg>
+                  <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                    KARIGOLD
+                  </span>
+                </div>
+              );
+            }
+            if (t.includes("nexus")) {
+              return (
+                <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                  <svg viewBox="0 0 48 48" className="w-8 h-8 text-indigo-400">
+                    <circle cx="16" cy="16" r="3" fill="currentColor" />
+                    <circle cx="32" cy="16" r="3" fill="currentColor" />
+                    <circle cx="24" cy="32" r="3" fill="currentColor" />
+                    <line x1="16" y1="16" x2="24" y2="32" stroke="currentColor" strokeWidth="2" />
+                    <line x1="32" y1="16" x2="24" y2="32" stroke="currentColor" strokeWidth="2" />
+                    <line x1="16" y1="16" x2="32" y2="16" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                  <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                    NEXUS
+                  </span>
+                </div>
+              );
+            }
+            if (t.includes("fitness") || t.includes("fitpal")) {
+              return (
+                <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                  <svg viewBox="0 0 48 48" className="w-8 h-8 text-green-400">
+                    <path d="M12 24c6 0 10-6 12-12 2 6 6 12 12 12-6 0-10 6-12 12-2-6-6-12-12-12z" stroke="currentColor" strokeWidth="2" fill="none" />
+                  </svg>
+                  <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                    FITPAL
+                  </span>
+                </div>
+              );
+            }
+            if (t.includes("anthill")) {
+              return (
+                <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                  <svg viewBox="0 0 48 48" className="w-8 h-8 text-orange-400">
+                    <circle cx="18" cy="24" r="2.5" fill="currentColor" />
+                    <circle cx="30" cy="24" r="3" fill="currentColor" />
+                    <circle cx="42" cy="24" r="3.5" fill="currentColor" />
+                    <line x1="18" y1="24" x2="30" y2="24" stroke="currentColor" strokeWidth="2" />
+                    <line x1="30" y1="24" x2="42" y2="24" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                  <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                    ANTHILL
+                  </span>
+                </div>
+              );
+            }
+            if (t.includes("solar")) {
+              return (
+                <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                  <svg viewBox="0 0 48 48" className="w-8 h-8 text-yellow-400">
+                    <circle cx="24" cy="24" r="6" stroke="currentColor" strokeWidth="2" fill="none" />
+                    <path d="M24 8v3M24 37v3M8 24h3M37 24h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                  <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                    SOLARGRID
+                  </span>
+                </div>
+              );
+            }
+            if (t.includes("anthropic")) {
+              return (
+                <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                  <svg viewBox="0 0 48 48" className="w-8 h-8 text-violet-400">
+                    <path d="M12 36l12-24 12 24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    <line x1="18" y1="28" x2="30" y2="28" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                  <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                    ANTHROPIC
+                  </span>
+                </div>
+              );
+            }
+            if (t.includes("cred")) {
+              return (
+                <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                  <svg viewBox="0 0 48 48" className="w-8 h-8 text-blue-400">
+                    <rect x="10" y="14" width="28" height="20" rx="3" stroke="currentColor" strokeWidth="2" fill="none" />
+                    <line x1="10" y1="20" x2="38" y2="20" stroke="currentColor" strokeWidth="1.5" />
+                  </svg>
+                  <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                    CRED
+                  </span>
+                </div>
+              );
+            }
+            return (
+              <div className="w-14 h-14 rounded-2xl bg-[#030303] border border-white/10 flex flex-col items-center justify-center p-2 relative shadow-inner flex-shrink-0">
+                <svg viewBox="0 0 48 48" className="w-8 h-8 text-yellow-500">
+                  <path d="M10 16h28l-4 22H14z" stroke="currentColor" strokeWidth="2" fill="none" />
+                  <circle cx="20" cy="38" r="2" fill="currentColor" />
+                  <circle cx="28" cy="38" r="2" fill="currentColor" />
+                </svg>
+                <span className="text-[5px] font-bold text-white/90 tracking-widest mt-0.5 uppercase leading-none font-mono">
+                  BLINKIT
+                </span>
+              </div>
+            );
+          };
+
+          const lookupKey = selectedProject.title.toLowerCase();
+          const richDetail = PROJECT_DETAILS_MAP[lookupKey] || {
+            statusBadge: "0→1 · VALIDATING",
+            subTagline: selectedProject.tagline,
+            briefSummary: selectedProject.description,
+            stats: selectedProject.bulletPoints?.slice(0, 4) || ["MVP tested live"],
+            keyAreas: "Product Strategy · Design · Engineering",
+            detailedDescription: selectedProject.description,
+            whereThisStands: "MVP launched and validation cycles underway.",
+            execSummaryLink: "#",
+            slideDeckLink: "#",
+            applicationLink: selectedProject.link || "#"
+          };
+
+          return (
+            <div 
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md cursor-default"
+              onClick={() => setSelectedProject(null)}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-[#070708] p-6 md:p-8 rounded-3xl border border-white/5 shadow-2xl flex flex-col gap-5 scrollbar-none"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="text-xs tracking-widest text-foreground hover:text-luxuryGold transition-colors duration-300 font-semibold uppercase cursor-pointer"
+                  className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/[0.03] border border-white/5 hover:border-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all duration-300 cursor-pointer z-50 shadow-md"
+                  aria-label="Close Details"
                 >
-                  CLOSE DETAILS
+                  <X className="w-3.5 h-3.5" />
                 </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
+
+                {/* Header details with brand logo & titles */}
+                <div className="flex gap-4 items-start pr-8">
+                  {renderProjectLogo(selectedProject.title)}
+                  
+                  <div className="flex flex-col gap-1">
+                    {/* Status Badge */}
+                    <div className="self-start text-[9px] text-[#D4AF37] font-mono font-medium tracking-widest uppercase px-2.5 py-0.5 bg-[#D4AF37]/5 border border-[#D4AF37]/25 rounded-full">
+                      {richDetail.statusBadge}
+                    </div>
+                    {/* Title */}
+                    <h3 className="text-xl md:text-2xl font-semibold text-white tracking-tight mt-1 leading-none">
+                      {selectedProject.title}
+                    </h3>
+                    {/* Sub-tagline */}
+                    <span className="text-[11px] text-white/50 font-mono tracking-normal leading-normal mt-0.5">
+                      {richDetail.subTagline}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Brief highlight paragraph */}
+                <p className="text-[12.5px] leading-relaxed text-white/85 font-light">
+                  {richDetail.briefSummary}
+                </p>
+
+                {/* Stats cards grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  {richDetail.stats.map((stat, idx) => (
+                    <div 
+                      key={idx}
+                      className="px-3 py-2 rounded-xl border border-white/5 bg-white/[0.01] text-[10.5px] font-mono text-white/60 tracking-tight leading-normal"
+                    >
+                      {stat}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Key Disciplines */}
+                <span className="text-[10.5px] tracking-wider text-blue-400 font-mono select-none">
+                  {richDetail.keyAreas}
+                </span>
+
+                <div className="w-full h-[1px] bg-white/5 my-1" />
+
+                {/* Detailed Description */}
+                <p className="text-[12.5px] leading-relaxed text-white/90 font-light">
+                  {richDetail.detailedDescription}
+                </p>
+
+                {/* Where this stands box */}
+                <div className="rounded-2xl border border-[#D4AF37]/15 bg-white/[0.01] p-4 flex flex-col gap-2">
+                  <div className="flex items-center gap-2 text-[10px] font-semibold tracking-wider text-[#D4AF37] font-mono">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                    WHERE THIS STANDS
+                  </div>
+                  <p className="text-[11px] text-white/60 leading-relaxed font-light">
+                    {richDetail.whereThisStands}
+                  </p>
+                </div>
+
+                {/* Modal actions (Exec Summary, Slide Deck, Application) */}
+                <div className="grid grid-cols-3 gap-3 mt-2">
+                  <a 
+                    href={richDetail.execSummaryLink}
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/10 transition-all font-mono text-[10px] font-medium text-white/80 text-center"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-white/40" />
+                    Exec Summary
+                  </a>
+                  <a 
+                    href={richDetail.slideDeckLink}
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/10 transition-all font-mono text-[10px] font-medium text-white/80 text-center"
+                  >
+                    <Presentation className="w-3.5 h-3.5 text-white/40" />
+                    Slide Deck
+                  </a>
+                  <a 
+                    href={richDetail.applicationLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border border-[#D4AF37]/35 bg-[#D4AF37]/5 hover:bg-[#D4AF37]/10 transition-all font-mono text-[10px] font-medium text-[#D4AF37] text-center"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 text-[#D4AF37]" />
+                    Application
+                  </a>
+                </div>
+
+              </motion.div>
+            </div>
+          );
+        })()}
       </AnimatePresence>
     </section>
   );
