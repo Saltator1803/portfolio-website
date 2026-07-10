@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRED — AI PM Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0a0c0f; --panel:#12151a; --panel-2:#15191f; --line:#232a33; --amber:#c5a880; --cyan:#4fd1c5; --coral:#e8654f; --text:#e9e7e2; --muted:#8b92a0; --muted-2:#5b6270; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--text); font-family:'IBM Plex Sans', sans-serif; line-height:1.6; font-size:16px; }
+  ::selection{ background:var(--amber); color:#0a0c0f; }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; }
+  a{ color:var(--cyan); }
+  .shell{ display:grid; grid-template-columns: 220px 1fr; max-width:1180px; margin:0 auto; }
+  @media (max-width: 860px){ .shell{ grid-template-columns: 1fr; } .rail{ display:none; } }
+  .rail{ position:sticky; top:0; height:100vh; padding:48px 0 48px 32px; border-right:1px solid var(--line); }
+  .rail-trace{ position:relative; padding-left:20px; }
+  .rail-trace::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: linear-gradient(180deg, transparent, var(--amber) 8%, var(--amber) 92%, transparent); opacity:0.5; }
+  .rail a{ display:block; position:relative; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-decoration:none; padding:9px 0; letter-spacing:0.02em; transition: color .15s ease; }
+  .rail a::before{ content:""; position:absolute; left:-20px; top:15px; width:9px; height:9px; border-radius:50%; background:var(--bg); border:1px solid var(--muted-2); }
+  .rail a:hover{ color:var(--amber); } .rail a:hover::before{ border-color:var(--amber); background:var(--amber); }
+  .rail-brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13px; color:var(--text); letter-spacing:0.06em; margin-bottom:28px; text-transform:uppercase; }
+  .rail-brand span{ color:var(--amber); }
+  main{ padding: 0 40px 100px; } @media (max-width: 860px){ main{ padding:0 22px 80px; } }
+  .hero{ padding: 90px 0 60px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em; display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--cyan); display:inline-block; box-shadow: 0 0 8px var(--cyan); }
+  .hero h1{ font-size: clamp(34px, 5vw, 56px); font-weight:700; line-height:1.08; max-width: 800px; }
+  .hero .accent{ color:var(--amber); }
+  .hero-sub{ margin-top:22px; color:var(--muted); font-size:17px; max-width:620px; }
+  .stat-row{ margin-top:48px; display:grid; grid-template-columns: repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
+  .stat{ background:var(--panel); padding:24px 22px; }
+  .stat .num{ font-family:'IBM Plex Mono', monospace; font-size:28px; font-weight:600; color:var(--amber); }
+  .stat .label{ font-size:12.5px; color:var(--muted); margin-top:6px; }
+  section.card{ position:relative; margin: 64px 0; padding: 40px 36px; background:var(--panel); border:1px solid var(--line); }
+  .corner-mark{ position:absolute; width:16px; height:16px; border-color:var(--amber); border-style:solid; border-width:0; }
+  .corner-mark.tl{ top:-1px; left:-1px; border-top-width:2px; border-left-width:2px; }
+  .corner-mark.tr{ top:-1px; right:-1px; border-top-width:2px; border-right-width:2px; }
+  .corner-mark.bl{ bottom:-1px; left:-1px; border-bottom-width:2px; border-left-width:2px; }
+  .corner-mark.br{ bottom:-1px; right:-1px; border-bottom-width:2px; border-right-width:2px; }
+  .sec-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; }
+  section.card h2{ font-size: 26px; margin-bottom:18px; font-weight:600; }
+  section.card p{ color:var(--text); font-size:15.5px; max-width:760px; }
+  section.card p + p{ margin-top:14px; }
+  section.card ul{ margin-top:16px; padding-left:0; list-style:none; }
+  section.card li{ position:relative; padding-left:22px; margin-bottom:12px; color:var(--text); font-size:15px; max-width:740px; }
+  section.card li::before{ content:"▸"; position:absolute; left:0; color:var(--cyan); }
+  .tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:11px; padding:4px 9px; border:1px solid var(--line); color:var(--muted); letter-spacing:0.04em; margin-bottom:16px; }
+  .tldr{ border-left:3px solid var(--amber); background: linear-gradient(90deg, rgba(197,168,128,0.07), transparent 60%); }
+  .tldr p{ font-size:16.5px; }
+  .chart-wrap{ margin-top:24px; padding:24px 20px 12px; background:var(--panel-2); border:1px solid var(--line); }
+  .chart-caption{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:12px; text-align:right; }
+  .closer{ margin: 70px 0 0; padding: 44px 36px; text-align:center; border:1px solid var(--amber); background: radial-gradient(ellipse at 50% 0%, rgba(197,168,128,0.08), transparent 70%); }
+  .closer p{ font-family:'Space Grotesk', sans-serif; font-size: clamp(19px, 2.4vw, 25px); font-weight:600; line-height:1.4; color:var(--text); max-width:740px; margin:0 auto; }
+  .closer p .accent{ color:var(--amber); }
+  .closer-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:18px; letter-spacing:0.08em; text-transform:uppercase; }
+  .metric-row{ display:flex; gap:28px; flex-wrap:wrap; margin-top:20px; padding-top:20px; border-top:1px dashed var(--line); }
+  .metric{ min-width:150px; } .metric .v{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:19px; } .metric .k{ font-size:12px; color:var(--muted); margin-top:3px; }
+  .moat-stack{ margin-top:28px; display:flex; flex-direction:column; gap:2px; }
+  .moat-layer{ padding:18px 20px; background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--cyan); display:grid; grid-template-columns: 32px 1fr; gap:16px; align-items:start; }
+  .moat-layer .idx{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:13px; }
+  .moat-layer h4{ font-family:'Space Grotesk', sans-serif; font-size:15.5px; margin-bottom:6px; color:var(--text); }
+  .moat-layer p{ font-size:14px; color:var(--muted); max-width:680px; }
+  footer{ max-width:1180px; margin:0 auto; padding:30px 40px 60px; color:var(--muted-2); font-size:12px; font-family:'IBM Plex Mono', monospace; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="rail">
+    <div class="rail-brand">Case Study <span>// CRED</span></div>
+    <div class="rail-trace">
+      <a href="#tldr">01 · TL;DR</a>
+      <a href="#problem">02 · The Problem</a>
+      <a href="#context">03 · Context</a>
+      <a href="#lens">04 · The Lens</a>
+      <a href="#ai-angle">05 · AI Angle</a>
+      <a href="#call">06 · My Call</a>
+      <a href="#metrics">07 · Measurement</a>
+    </div>
+  </nav>
+  <main>
+    <div class="hero">
+      <div class="eyebrow">Business Model & Trust-Based Monetization</div>
+      <div class="dateline" style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin:-10px 0 20px; letter-spacing:0.04em; text-transform:uppercase;">Analysis as of June 2026 — figures may have moved since.</div>
+      <h1>CRED Bet That Exclusivity Was a Growth Strategy, Not a <span class="accent">Constraint</span></h1>
+      <p class="hero-sub">Independent case study — Monetization Strategy track. A free app for India's top 1% of credit card holders sounds like a vanity project — until you notice Meta just paid $900M to be part of it.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">22%</div><div class="label">of India's credit card payment volume</div></div>
+        <div class="stat"><div class="num">₹2,473cr</div><div class="label">FY24 revenue, +66% YoY</div></div>
+        <div class="stat"><div class="num">$4.5B</div><div class="label">valuation after Meta's June 2026 $900M round</div></div>
+      </div>
+    </div>
+
+    <section class="card tldr" id="tldr">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">01 / TL;DR</div>
+      <h2>The gate was the growth engine.</h2>
+      <p>CRED restricts membership to users with a credit score above 750 — deliberately excluding 99% of India's population — and only monetizes about a third of its paying-eligible base. Critics called this a business model with no revenue plan for years. But in June 2026, Meta led a $900M round valuing CRED at $4.5B, specifically to gain access to a curated, high-spending, pre-vetted audience that would be nearly impossible to build from scratch. The exclusivity wasn't a bug in the growth story — it was the entire strategy.</p>
+    </section>
+
+    <section class="card" id="problem">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">02 / The Problem</div>
+      <h2>How do you monetize a free product without breaking the trust that makes it valuable?</h2>
+      <p>CRED's core "product" — paying your credit card bill on time — has zero inherent monetization; nobody pays a fee to pay a bill. The strategic challenge was building revenue streams (lending, insurance, brand commerce) on top of a trust relationship without turning CRED into just another data-selling fintech app, which would destroy the premium positioning that makes its user base valuable to partners in the first place.</p>
+    </section>
+
+    <section class="card" id="context">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">03 / Context — only what matters</div>
+      <h2>The numbers behind the "confused business model" reputation</h2>
+      <ul>
+        <li>Revenue nearly doubled while losses fell 41% by 2026 — CRED shifted from a growth story to an efficiency story without losing its user base.</li>
+        <li>CRED Pay transactions grew 254% — the clearest signal that its merchant-payment layer, not just bill payments, is gaining genuine independent traction.</li>
+        <li>Valuation actually fell from a $6.4B peak (2022) to roughly $3.64B before the 2026 Meta round brought it back to $4.5B — a reminder that "trust as an asset" still has to eventually show up in a P&L, and investors were losing patience before it did.</li>
+        <li>Nearly 90% of revenue now comes from credit, payments, and insurance combined — a genuinely diversified monetization base for a company once mocked for having none.</li>
+      </ul>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 700 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="165" x2="670" y2="165" stroke="#232a33" stroke-width="1"/>
+          <g font-family="IBM Plex Mono" font-size="11" fill="#8b92a0">
+            <rect x="90" y="40" width="55" height="125" fill="#e8654f" opacity="0.75"/>
+            <text x="117" y="185" text-anchor="middle">2022 peak</text>
+            <text x="117" y="30" text-anchor="middle" fill="#e9e7e2">$6.4B</text>
+
+            <rect x="280" y="120" width="55" height="45" fill="#232a33"/>
+            <text x="307" y="185" text-anchor="middle">Early 2026</text>
+            <text x="307" y="110" text-anchor="middle" fill="#e9e7e2">$3.64B</text>
+
+            <rect x="470" y="70" width="55" height="95" fill="#c5a880"/>
+            <text x="497" y="185" text-anchor="middle">Jun 2026</text>
+            <text x="497" y="60" text-anchor="middle" fill="#e9e7e2">$4.5B</text>
+          </g>
+        </svg>
+        <div class="chart-caption">Fig. 1 — CRED valuation trajectory, 2022–2026 (Wikipedia, VFS reporting)</div>
+      </div>
+    </section>
+
+    <section class="card" id="lens">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <span class="tag">LENS: BUSINESS MODEL CANVAS — TRUST AS THE ASSET</span>
+      <div class="sec-label">04 / The Lens</div>
+      <h2>Three ways CRED converts trust into revenue without spending it</h2>
+      <div class="moat-stack">
+        <div class="moat-layer">
+          <div class="idx">01</div>
+          <div><h4>Curated audience as the product for partners</h4><p>Brands and lenders don't pay CRED for ad impressions — they pay for guaranteed access to a pre-vetted, high-creditworthiness segment. That's a fundamentally different (and higher-value) transaction than typical ad-tech.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">02</div>
+          <div><h4>Financial data compounds instead of decaying</h4><p>Every bill paid, every card linked deepens CRED's picture of a user's financial behavior — a data moat that gets more valuable and harder to replicate the longer a user stays, unlike engagement-based apps where attention is fungible.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">03</div>
+          <div><h4>Delta 4 theory — the switching cost is behavioral, not contractual</h4><p>Founder Kunal Shah's own framework: once a product improves an experience enough to feel irreversible, users don't rationally compare alternatives anymore. CRED optimized for that psychological lock-in before optimizing for revenue.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="ai-angle">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">05 / The AI Angle</div>
+      <h2>AI-driven credit scoring is the real long-term monetization unlock</h2>
+      <p>CRED is reportedly using AI to build behavioral credit profiles beyond the traditional CIBIL score — identifying users who reliably pay premium bills or manage high utilization efficiently, then routing them toward exclusive lending and product offers. This is the highest-leverage AI application in CRED's stack: it turns the passive trust asset (a high credit score) into an active, continuously-updating signal that partners will pay a premium to access, well beyond what a static credit bureau score can offer.</p>
+    </section>
+
+    <section class="card" id="call">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">06 / My Call</div>
+      <h2>Resist the pressure to widen the gate. Depth over breadth, permanently.</h2>
+      <p>If I were leading CRED's growth strategy, I would resist any push to lower the 750-credit-score threshold to chase user-count growth — that number is the entire reason partners like Meta pay a premium to be associated with the platform. I'd instead push harder on monetizing the two-thirds of the base that's currently untapped, through more sophisticated AI-driven personalized lending and insurance offers, rather than diluting exclusivity for volume.</p>
+      <p><strong>The tradeoff I'd accept:</strong> a permanently smaller addressable market than a typical fintech, in exchange for defending the one asset — audience quality — that no scale-focused competitor can easily replicate.</p>
+    <p style="margin-top: 18px; border-top: 1px dashed var(--line); padding-top: 14px; color: var(--cyan);"><strong style="color: var(--amber);">Developer Perspective:</strong> The engineering challenge underneath this is harder than it sounds: a "continuously updating" behavioral score requires streaming transactional data into a live model rather than the batch-scored, periodically-updated systems most credit infrastructure was built on — that shift from batch to real-time is a significant backend investment, not just a data science one.</p></section>
+
+    <section class="card" id="metrics">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">07 / How I'd Measure It</div>
+      <h2>North Star + two supporting signals</h2>
+      <div class="metric-row">
+        <div class="metric"><div class="v">★ North Star</div><div class="k">Revenue per monetized user — the true test of whether trust is converting to sustainable economics</div></div>
+        <div class="metric"><div class="v">Signal 01</div><div class="k">% of eligible users actively monetized — the untapped-base opportunity management has flagged</div></div>
+        <div class="metric"><div class="v">Signal 02</div><div class="k">Partner willingness-to-pay per user (ad/listing rates) — direct proxy for whether the "curated audience" premium is holding</div></div>
+      </div>
+    </section>
+
+    <div class="closer">
+      <p>CRED didn't build a fintech app for everyone — it built the one financial product that makes <span class="accent">being excluded</span> feel like the real cost.</p>
+      <div class="closer-tag">END OF CASE STUDY // CRED-01</div>
+    </div>
+  </main>
+</div>
+Case study prepared as an AI Product Management portfolio exercise · Figures sourced from Wikipedia, VFS, Feedough, and TheFinthusiastic analysis, 2025–2026<br><span style="display: block; margin-top: 6px; opacity: 0.75; font-size: 11px;">This is an independent, self-directed practice case study; AI was utilized for research and structuring support, while final problem framing, analysis, and strategic judgment were developed solely by me.</span></footer>
+</body>
+</html>

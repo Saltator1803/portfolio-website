@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duolingo — AI PM Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0a0c0f; --panel:#12151a; --panel-2:#15191f; --line:#232a33; --amber:#e8a33d; --cyan:#4fd1c5; --coral:#e8654f; --text:#e9e7e2; --muted:#8b92a0; --muted-2:#5b6270; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--text); font-family:'IBM Plex Sans', sans-serif; line-height:1.6; font-size:16px; }
+  ::selection{ background:var(--amber); color:#0a0c0f; }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; }
+  a{ color:var(--cyan); }
+  .shell{ display:grid; grid-template-columns: 220px 1fr; max-width:1180px; margin:0 auto; }
+  @media (max-width: 860px){ .shell{ grid-template-columns: 1fr; } .rail{ display:none; } }
+  .rail{ position:sticky; top:0; height:100vh; padding:48px 0 48px 32px; border-right:1px solid var(--line); }
+  .rail-trace{ position:relative; padding-left:20px; }
+  .rail-trace::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: linear-gradient(180deg, transparent, var(--amber) 8%, var(--amber) 92%, transparent); opacity:0.5; }
+  .rail a{ display:block; position:relative; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-decoration:none; padding:9px 0; letter-spacing:0.02em; transition: color .15s ease; }
+  .rail a::before{ content:""; position:absolute; left:-20px; top:15px; width:9px; height:9px; border-radius:50%; background:var(--bg); border:1px solid var(--muted-2); }
+  .rail a:hover{ color:var(--amber); } .rail a:hover::before{ border-color:var(--amber); background:var(--amber); }
+  .rail-brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13px; color:var(--text); letter-spacing:0.06em; margin-bottom:28px; text-transform:uppercase; }
+  .rail-brand span{ color:var(--amber); }
+  main{ padding: 0 40px 100px; } @media (max-width: 860px){ main{ padding:0 22px 80px; } }
+  .hero{ padding: 90px 0 60px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em; display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--cyan); display:inline-block; box-shadow: 0 0 8px var(--cyan); }
+  .hero h1{ font-size: clamp(34px, 5vw, 56px); font-weight:700; line-height:1.08; max-width: 800px; }
+  .hero .accent{ color:var(--amber); }
+  .hero-sub{ margin-top:22px; color:var(--muted); font-size:17px; max-width:620px; }
+  .stat-row{ margin-top:48px; display:grid; grid-template-columns: repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
+  .stat{ background:var(--panel); padding:24px 22px; }
+  .stat .num{ font-family:'IBM Plex Mono', monospace; font-size:28px; font-weight:600; color:var(--amber); }
+  .stat .label{ font-size:12.5px; color:var(--muted); margin-top:6px; }
+  section.card{ position:relative; margin: 64px 0; padding: 40px 36px; background:var(--panel); border:1px solid var(--line); }
+  .corner-mark{ position:absolute; width:16px; height:16px; border-color:var(--amber); border-style:solid; border-width:0; }
+  .corner-mark.tl{ top:-1px; left:-1px; border-top-width:2px; border-left-width:2px; }
+  .corner-mark.tr{ top:-1px; right:-1px; border-top-width:2px; border-right-width:2px; }
+  .corner-mark.bl{ bottom:-1px; left:-1px; border-bottom-width:2px; border-left-width:2px; }
+  .corner-mark.br{ bottom:-1px; right:-1px; border-bottom-width:2px; border-right-width:2px; }
+  .sec-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; }
+  section.card h2{ font-size: 26px; margin-bottom:18px; font-weight:600; }
+  section.card p{ color:var(--text); font-size:15.5px; max-width:760px; }
+  section.card p + p{ margin-top:14px; }
+  section.card ul{ margin-top:16px; padding-left:0; list-style:none; }
+  section.card li{ position:relative; padding-left:22px; margin-bottom:12px; color:var(--text); font-size:15px; max-width:740px; }
+  section.card li::before{ content:"▸"; position:absolute; left:0; color:var(--cyan); }
+  .tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:11px; padding:4px 9px; border:1px solid var(--line); color:var(--muted); letter-spacing:0.04em; margin-bottom:16px; }
+  .tldr{ border-left:3px solid var(--amber); background: linear-gradient(90deg, rgba(232,163,61,0.07), transparent 60%); }
+  .tldr p{ font-size:16.5px; }
+  .chart-wrap{ margin-top:24px; padding:24px 20px 12px; background:var(--panel-2); border:1px solid var(--line); }
+  .chart-caption{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:12px; text-align:right; }
+  .closer{ margin: 70px 0 0; padding: 44px 36px; text-align:center; border:1px solid var(--amber); background: radial-gradient(ellipse at 50% 0%, rgba(232,163,61,0.08), transparent 70%); }
+  .closer p{ font-family:'Space Grotesk', sans-serif; font-size: clamp(19px, 2.4vw, 25px); font-weight:600; line-height:1.4; color:var(--text); max-width:740px; margin:0 auto; }
+  .closer p .accent{ color:var(--amber); }
+  .closer-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:18px; letter-spacing:0.08em; text-transform:uppercase; }
+  .metric-row{ display:flex; gap:28px; flex-wrap:wrap; margin-top:20px; padding-top:20px; border-top:1px dashed var(--line); }
+  .metric{ min-width:150px; } .metric .v{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:19px; } .metric .k{ font-size:12px; color:var(--muted); margin-top:3px; }
+  .moat-stack{ margin-top:28px; display:flex; flex-direction:column; gap:2px; }
+  .moat-layer{ padding:18px 20px; background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--cyan); display:grid; grid-template-columns: 32px 1fr; gap:16px; align-items:start; }
+  .moat-layer .idx{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:13px; }
+  .moat-layer h4{ font-family:'Space Grotesk', sans-serif; font-size:15.5px; margin-bottom:6px; color:var(--text); }
+  .moat-layer p{ font-size:14px; color:var(--muted); max-width:680px; }
+  footer{ max-width:1180px; margin:0 auto; padding:30px 40px 60px; color:var(--muted-2); font-size:12px; font-family:'IBM Plex Mono', monospace; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="rail">
+    <div class="rail-brand">Case Study <span>// DUOLINGO</span></div>
+    <div class="rail-trace">
+      <a href="#tldr">01 · TL;DR</a>
+      <a href="#problem">02 · The Problem</a>
+      <a href="#context">03 · Context</a>
+      <a href="#lens">04 · The Lens</a>
+      <a href="#ai-angle">05 · AI Angle</a>
+      <a href="#call">06 · My Call</a>
+      <a href="#metrics">07 · Measurement</a>
+    </div>
+  </nav>
+  <main>
+    <div class="hero">
+      <div class="eyebrow">Product Design & Retention</div>
+      <h1>Duolingo Is Betting the Streak Is More Defensible Than the <span class="accent">Curriculum</span></h1>
+      <p class="hero-sub">Role simulated: AI Product Manager, Growth & Retention. When free AI can already teach a language as well as a paid app, what's left to sell? Duolingo's answer: the habit, not the lesson.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">56.5M</div><div class="label">daily active users, Q1 2026, +21% YoY</div></div>
+        <div class="stat"><div class="num">12.5M</div><div class="label">paid subscribers, +21% YoY</div></div>
+        <div class="stat"><div class="num">28%</div><div class="label">core-market churn, down from 47% in 2020</div></div>
+      </div>
+    </div>
+
+    <section class="card tldr" id="tldr">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">01 / TL;DR</div>
+      <h2>Duolingo's CEO just told Wall Street he's choosing users over money.</h2>
+      <p>Duolingo beat every Q1 2026 revenue estimate, yet the stock dropped 14% because CEO Luis von Ahn announced the company would deliberately slow bookings growth (10-12% guidance, down from 30%+) to reinvest in free-user engagement ahead of a 100M DAU target by 2028. The reasoning: if conversational AI becomes a free feature of every phone's operating system, Duolingo's curriculum stops being defensible — but the streak counter, the leaderboard, and the 7pm notification about your 847-day streak might not be replicable by a generic AI agent.</p>
+    </section>
+
+    <section class="card" id="problem">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">02 / The Problem</div>
+      <h2>What do you defend when your core product becomes a commodity feature?</h2>
+      <p>Language tutoring is one of the first consumer categories AI can do for free — a capable model can already hold a conversation practice session as well as a paid app. If teaching itself is no longer scarce, Duolingo has to find a different asset to build a moat around: not what it teaches, but how it makes practicing feel like something a person can't walk away from.</p>
+    </section>
+
+    <section class="card" id="context">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">03 / Context — only what matters</div>
+      <h2>The engagement numbers behind the bet</h2>
+      <ul>
+        <li>Duolingo Max, the AI-powered premium tier (Roleplay, Explain My Answer), moved from ~5% to 9% of the paying base in a year — genuine AI-tier adoption, but slower than the core habit-loop growth.</li>
+        <li>Over 5 million users hold streaks of a year or longer; more than half of daily learners have a streak of at least 7 days — the loss-aversion mechanic is doing real behavioral work, not just marketing copy.</li>
+        <li>In May 2025, a CEO memo about replacing contractors with AI triggered a visible content-quality backlash and the loss of 400,000+ TikTok followers in weeks — a reminder that AI-driven efficiency and perceived product quality can conflict in public view.</li>
+        <li>Q1 2026 R&D spend hit $70.4M, largely AI-inference costs for Max features — heavy usage of the "differentiated" tier is also the most expensive tier to serve, compressing margin exactly where the growth bet is placed.</li>
+      </ul>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 700 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="165" x2="670" y2="165" stroke="#232a33" stroke-width="1"/>
+          <g font-family="IBM Plex Mono" font-size="11" fill="#8b92a0">
+            <rect x="100" y="140" width="60" height="25" fill="#232a33"/>
+            <text x="130" y="185" text-anchor="middle">2020</text>
+            <text x="130" y="130" text-anchor="middle" fill="#e9e7e2">47% churn</text>
+
+            <rect x="440" y="30" width="60" height="135" fill="#e8a33d"/>
+            <text x="470" y="185" text-anchor="middle">2026</text>
+            <text x="470" y="20" text-anchor="middle" fill="#e9e7e2">28% churn</text>
+          </g>
+        </svg>
+        <div class="chart-caption">Fig. 1 — Duolingo core-market churn reduction, 2020–2026 (StriveCloud analysis)</div>
+      </div>
+    </section>
+
+    <section class="card" id="lens">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <span class="tag">LENS: RICE — RETENTION LOOP PRIORITIZATION</span>
+      <div class="sec-label">04 / The Lens</h2>
+      <h2>Which loop earns the next dollar of investment?</h2>
+      <div class="moat-stack">
+        <div class="moat-layer">
+          <div class="idx">01</div>
+          <div><h4>Streak / loss-aversion loop — Reach: very high, Confidence: very high</h4><p>Touches every daily user, proven over 6 years of data, and is the mechanic von Ahn himself credits as the single biggest growth lever in company history. Highest RICE score of any feature in the product.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">02</div>
+          <div><h4>AI Roleplay / Explain My Answer — Reach: narrow (9% of payers), Confidence: medium</h4><p>High potential impact on retention depth for paying users, but reach is still small and inference cost is high — the RICE case is real but not yet proven at scale.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">03</div>
+          <div><h4>New subjects (math, music) — Reach: unproven, Confidence: low-medium</h4><p>Porting the gamified mechanic to new domains has the highest theoretical effort and the least evidence so far — the right long-term bet, but not where near-term resourcing should concentrate.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="ai-angle">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">05 / The AI Angle</div>
+      <h2>AI is simultaneously the biggest threat and the biggest cost center</h2>
+      <p>Duolingo faces a rare double-bind: generative AI threatens to commoditize its core teaching value (any chatbot can converse in Spanish), while also being the most expensive input to its own premium tier. This is a genuinely hard product question — the same technology that could disintermediate you is also the thing customers are starting to expect you to offer. The 2025 AI-content backlash shows the reputational risk of leaning on AI for content generation without preserving the perceived quality bar.</p>
+    </section>
+
+    <section class="card" id="call">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">06 / My Call</div>
+      <h2>Protect the habit mechanic fiercely; treat AI features as a retention multiplier, not the product</h2>
+      <p>If I were leading product at Duolingo, I would resist framing Max's AI features as the company's future — they're a valuable add-on, not a moat. I'd invest the marginal dollar in making the streak/league/notification system smarter and more personalized (which is achievable with much cheaper AI than full conversational roleplay), rather than chasing feature parity with general-purpose AI tutors on raw teaching capability, a fight Duolingo cannot durably win.</p>
+      <p><strong>The tradeoff I'd accept:</strong> a less flashy AI story for investors in exchange for protecting the thing that actually explains the company's 6-year retention improvement — the habit design, not the model quality.</p>
+    </section>
+
+    <section class="card" id="metrics">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">07 / How I'd Measure It</div>
+      <h2>North Star + two supporting signals</h2>
+      <div class="metric-row">
+        <div class="metric"><div class="v">★ North Star</div><div class="k">7-day streak retention rate — the clearest proxy for whether the habit loop, not the AI tier, is still doing the real work</div></div>
+        <div class="metric"><div class="v">Signal 01</div><div class="k">Max tier gross margin per user — tracks whether the AI bet is becoming sustainable or just expensive</div></div>
+        <div class="metric"><div class="v">Signal 02</div><div class="k">DAU growth rate vs. bookings growth rate — the two numbers management explicitly said would diverge in 2026</div></div>
+      </div>
+    </section>
+
+    <div class="closer">
+      <p>Duolingo isn't betting that AI can't teach Spanish — it's betting that <span class="accent">nobody misses a habit</span> they never had to build.</p>
+      <div class="closer-tag">END OF CASE STUDY // DUOL-01</div>
+    </div>
+  </main>
+</div>
+<footer>Case study prepared as an AI Product Management portfolio exercise · Figures sourced from Duolingo investor communications, Alphastreet, StriveCloud, and The Next Web reporting, 2026</footer>
+</body>
+</html>

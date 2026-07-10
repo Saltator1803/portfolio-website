@@ -12,6 +12,13 @@ interface ProjectItem {
   description: string;
   bulletPoints?: string[];
   link?: string;
+  isIndependent?: boolean;
+  context?: string;
+  problem?: string;
+  process?: string;
+  solutionTradeoffs?: string;
+  expectedOutcome?: string;
+  whatToTestNext?: string;
 }
 
 export default function Projects() {
@@ -139,13 +146,21 @@ export default function Projects() {
   return (
     <section id="projects" className="relative py-32 bg-background overflow-hidden z-20 flex flex-col items-center border-b border-luxuryBorder">
       <div className="max-w-6xl w-full px-8 md:px-16 mb-16 flex flex-col md:flex-row justify-between items-baseline gap-4 border-b border-luxuryBorder pb-8">
-        <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono flex items-center gap-2">
-          <Sparkles className="w-3.5 h-3.5 animate-pulse text-luxuryGold" />
-          / 02 — Digital Engineering
-        </h2>
-        <span className="text-3xl font-light text-foreground tracking-widest uppercase block">
-          Featured Projects
-        </span>
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono flex items-center gap-2">
+            <Sparkles className="w-3.5 h-3.5 animate-pulse text-luxuryGold" />
+            / 02 — Digital Engineering
+          </h2>
+          <span className="text-3xl font-light text-foreground tracking-widest uppercase block">
+            Featured Projects
+          </span>
+        </div>
+        <a
+          href="#strategy-vault"
+          className="text-xs tracking-widest text-luxuryGold font-semibold hover:underline flex items-center gap-2 cursor-pointer font-mono mt-2 md:mt-0"
+        >
+          VIEW STRATEGY VAULT (8 CASE STUDIES) →
+        </a>
       </div>
 
       {/* 3D 🏆 ULTRA-PREMIUM CAROUSEL */}
@@ -241,6 +256,11 @@ export default function Projects() {
 
               {/* Header details */}
               <div className="flex flex-col gap-1 border-b border-luxuryBorder/20 pb-5 pr-10">
+                {selectedProject.isIndependent && (
+                  <div className="mb-2 self-start text-[10px] text-luxuryGold font-mono tracking-widest uppercase px-3 py-1 bg-luxuryGold/5 border border-luxuryGold/20 rounded-md">
+                    Independent teardown / coursework case study — not client work
+                  </div>
+                )}
                 <span className="text-xs text-luxuryGold font-mono uppercase tracking-widest">
                   {selectedProject.tagline.split(" | ")[0]}
                 </span>
@@ -277,12 +297,91 @@ export default function Projects() {
               />
 
               {/* Specifications Descriptions */}
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <p className="text-sm md:text-base text-luxuryMuted leading-relaxed font-light">
                   {selectedProject.description}
                 </p>
 
-                {selectedProject.bulletPoints && (
+                {/* Structured Case Study Grid */}
+                {(selectedProject.context || selectedProject.problem || selectedProject.process || selectedProject.solutionTradeoffs) && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-luxuryBorder/10 pt-6">
+                    {selectedProject.context && (
+                      <div className="space-y-1">
+                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono">
+                          Context
+                        </h4>
+                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
+                          {selectedProject.context}
+                        </p>
+                      </div>
+                    )}
+
+                    {selectedProject.problem && (
+                      <div className="space-y-1">
+                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono">
+                          The Friction / Gap
+                        </h4>
+                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
+                          {selectedProject.problem}
+                        </p>
+                      </div>
+                    )}
+
+                    {selectedProject.process && (
+                      <div className="space-y-1">
+                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono">
+                          Process & Research
+                        </h4>
+                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
+                          {selectedProject.process}
+                        </p>
+                      </div>
+                    )}
+
+                    {selectedProject.solutionTradeoffs && (
+                      <div className="space-y-1">
+                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono">
+                          Solution & Tradeoffs
+                        </h4>
+                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
+                          {selectedProject.solutionTradeoffs}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Expected Outcome & Next Steps (Full Width Rows) */}
+                {(selectedProject.expectedOutcome || selectedProject.whatToTestNext) && (
+                  <div className="space-y-4 border-t border-luxuryBorder/10 pt-4">
+                    {selectedProject.expectedOutcome && (
+                      <div className="space-y-1">
+                        <h4 className="text-xs font-semibold tracking-wider text-teal-400 uppercase font-mono flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-teal-400/80 animate-pulse" />
+                          Expected Outcome
+                        </h4>
+                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
+                          {selectedProject.expectedOutcome}
+                        </p>
+                      </div>
+                    )}
+
+                    {selectedProject.whatToTestNext && (
+                      <div className="space-y-1">
+                        <h4 className="text-xs font-semibold tracking-wider text-luxuryGold uppercase font-mono flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-luxuryGold/80 animate-pulse" />
+                          What I'd Test Next
+                        </h4>
+                        <p className="text-xs md:text-sm text-luxuryMuted/80 font-light leading-relaxed">
+                          {selectedProject.whatToTestNext}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Legacy bulletPoints fallback (if structured content is not defined) */}
+                {!selectedProject.context && selectedProject.bulletPoints && (
                   <ul className="space-y-3 border-l border-luxuryBorder/30 pl-4 md:pl-6">
                     {selectedProject.bulletPoints.map((bullet, idx) => (
                       <li
@@ -305,7 +404,9 @@ export default function Projects() {
                     rel="noopener noreferrer"
                     className="text-xs tracking-widest text-luxuryGold font-semibold hover:underline flex items-center gap-2 cursor-pointer"
                   >
-                    LAUNCH LIVE PROJECT
+                    {selectedProject.link.includes("case-study.html") 
+                      ? "READ STRATEGY CASE STUDY" 
+                      : "LAUNCH LIVE PROJECT"}
                     <ArrowRight className="w-4 h-4 text-luxuryGold" />
                   </a>
                 ) : (

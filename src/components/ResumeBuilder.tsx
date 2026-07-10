@@ -112,118 +112,135 @@ const styles = StyleSheet.create({
 });
 
 // Structure the static document schema matching the PDF exactly
-export const MyResumeDoc = () => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      {/* Header Panel */}
-      <View style={styles.header}>
-        <Text style={styles.name}>{data.profile.name}</Text>
-        <View style={styles.contactGrid}>
-          <Text style={styles.contactItem}>{data.profile.phone} |</Text>
-          <Text style={styles.contactItem}>{data.profile.email} |</Text>
-          <Text style={styles.contactItem}>
-            LinkedIn: <Link src={`https://${data.profile.linkedin}`} style={styles.linkedinLink}>{data.profile.name}</Link>
-          </Text>
-        </View>
-      </View>
+// Structure the static document schema matching the PDF exactly
+export const MyResumeDoc = () => {
+  const allSkills = [
+    ...data.skills.product,
+    ...data.skills.technical,
+    ...data.skills.other
+  ];
 
-      {/* Executive Summary */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Executive Summary</Text>
-        </View>
-        <Text style={styles.summaryText}>{data.profile.summary}</Text>
-      </View>
-
-      {/* Skills */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Skills</Text>
-        </View>
-        <Text style={styles.skillsText}>{data.skills.join(" | ")}</Text>
-      </View>
-
-      {/* Education */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Education</Text>
-        </View>
-        {data.education.map((edu, idx) => (
-          <View key={idx} style={styles.item} wrap={false}>
-            <View style={styles.itemHeader}>
-              <Text style={styles.itemTitle}>
-                {edu.institution} – <Text style={{ fontWeight: "normal" }}>{edu.degree}</Text>
-              </Text>
-              <Text style={styles.itemDuration}>
-                {edu.duration}{edu.location ? `, ${edu.location}` : ""}
-              </Text>
-            </View>
-            <Text style={styles.itemSubDetails}>{edu.details}</Text>
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        {/* Header Panel */}
+        <View style={styles.header}>
+          <Text style={styles.name}>{data.profile.name}</Text>
+          <View style={styles.contactGrid}>
+            <Text style={styles.contactItem}>{data.profile.phone} |</Text>
+            <Text style={styles.contactItem}>{data.profile.email} |</Text>
+            <Text style={styles.contactItem}>
+              LinkedIn: <Link src={`https://${data.profile.linkedin}`} style={styles.linkedinLink}>{data.profile.name}</Link>
+            </Text>
           </View>
-        ))}
-      </View>
-
-      {/* Work Experience */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Work Experience</Text>
         </View>
-        {data.experience.map((exp, idx) => (
-          <View key={idx} style={styles.item} wrap={false}>
-            <View style={styles.itemHeader}>
-              <Text style={styles.itemTitle}>
-                {exp.company} – <Text style={{ fontWeight: "normal" }}>{exp.role}</Text>
-              </Text>
-              <Text style={styles.itemDuration}>{exp.duration}</Text>
-            </View>
-            {exp.bulletPoints && exp.bulletPoints.map((bullet, bIdx) => (
-              <View key={bIdx} style={styles.bulletRow}>
-                <Text style={styles.bulletSymbol}>•</Text>
-                <Text style={styles.bulletText}>{bullet}</Text>
+
+        {/* Executive Summary */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Executive Summary</Text>
+          </View>
+          <Text style={styles.summaryText}>{data.profile.summary}</Text>
+        </View>
+
+        {/* Skills */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Skills</Text>
+          </View>
+          <Text style={styles.skillsText}>{allSkills.join(" | ")}</Text>
+        </View>
+
+        {/* Education */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Education</Text>
+          </View>
+          {data.education.map((edu, idx) => (
+            <View key={idx} style={styles.item} wrap={false}>
+              <View style={styles.itemHeader}>
+                <Text style={styles.itemTitle}>
+                  {edu.institution} – <Text style={{ fontWeight: "normal" }}>{edu.degree}</Text>
+                </Text>
+                <Text style={styles.itemDuration}>
+                  {edu.duration}{edu.location ? `, ${edu.location}` : ""}
+                </Text>
               </View>
-            ))}
-          </View>
-        ))}
-      </View>
-
-      {/* Products and Projects */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Products and Projects</Text>
-        </View>
-        {data.projects.map((proj, idx) => (
-          <View key={idx} style={styles.item} wrap={false}>
-            <View style={styles.itemHeader}>
-              <Text style={styles.itemTitle}>
-                {proj.title} <Text style={{ fontWeight: "normal" }}>({proj.tagline.split(" | ")[0]}) | {proj.tagline.split(" | ").slice(1).join(" | ")}</Text>
-              </Text>
-              <Text style={styles.itemDuration}>{proj.duration}</Text>
+              <Text style={styles.itemSubDetails}>{edu.details}</Text>
             </View>
-            {proj.bulletPoints && proj.bulletPoints.map((bullet, bIdx) => (
-              <View key={bIdx} style={styles.bulletRow}>
-                <Text style={styles.bulletSymbol}>•</Text>
-                <Text style={styles.bulletText}>{bullet}</Text>
-              </View>
-            ))}
-          </View>
-        ))}
-      </View>
-
-      {/* Certifications and Leadership */}
-      <View style={styles.section}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Certifications and Leadership</Text>
+          ))}
         </View>
-        {data.certifications.map((cert, idx) => (
-          <View key={idx} style={styles.bulletRow}>
-            <Text style={styles.bulletSymbol}>•</Text>
-            <Text style={styles.bulletText}>{cert}</Text>
+
+        {/* Work Experience */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Work Experience</Text>
           </View>
-        ))}
-      </View>
-    </Page>
-  </Document>
-);
+          {data.experience.map((exp, idx) => (
+            <View key={idx} style={styles.item} wrap={false}>
+              <View style={styles.itemHeader}>
+                <Text style={styles.itemTitle}>
+                  {exp.company} – <Text style={{ fontWeight: "normal" }}>{exp.role}</Text>
+                </Text>
+                <Text style={styles.itemDuration}>{exp.duration}</Text>
+              </View>
+              {exp.bulletPoints && exp.bulletPoints.map((bullet, bIdx) => (
+                <View key={bIdx} style={styles.bulletRow}>
+                  <Text style={styles.bulletSymbol}>•</Text>
+                  <Text style={styles.bulletText}>{bullet}</Text>
+                </View>
+              ))}
+            </View>
+          ))}
+        </View>
+
+        {/* Products and Projects */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Products and Projects</Text>
+          </View>
+          {data.projects.map((proj: any, idx) => {
+            const bullets = [];
+            if (proj.context) bullets.push(`Context: ${proj.context}`);
+            if (proj.problem) bullets.push(`Problem: ${proj.problem}`);
+            if (proj.solutionTradeoffs) bullets.push(`Solution: ${proj.solutionTradeoffs}`);
+            if (proj.expectedOutcome) bullets.push(`Outcome: ${proj.expectedOutcome}`);
+            
+            return (
+              <View key={idx} style={styles.item} wrap={false}>
+                <View style={styles.itemHeader}>
+                  <Text style={styles.itemTitle}>
+                    {proj.title} <Text style={{ fontWeight: "normal" }}>({proj.tagline.split(" | ")[0]}) | {proj.tagline.split(" | ").slice(1).join(" | ")}</Text>
+                  </Text>
+                  <Text style={styles.itemDuration}>{proj.duration}</Text>
+                </View>
+                {bullets.map((bullet, bIdx) => (
+                  <View key={bIdx} style={styles.bulletRow}>
+                    <Text style={styles.bulletSymbol}>•</Text>
+                    <Text style={styles.bulletText}>{bullet}</Text>
+                  </View>
+                ))}
+              </View>
+            );
+          })}
+        </View>
+
+        {/* Certifications and Leadership */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Certifications and Leadership</Text>
+          </View>
+          {data.certifications.map((cert, idx) => (
+            <View key={idx} style={styles.bulletRow}>
+              <Text style={styles.bulletSymbol}>•</Text>
+              <Text style={styles.bulletText}>{cert}</Text>
+            </View>
+          ))}
+        </View>
+      </Page>
+    </Document>
+  );
+};
 
 // Dynamically load download trigger to bypass standard SSR document execution errors
 const PDFDownloadLink = dynamic(
@@ -248,7 +265,7 @@ export default function ResumeBuilder() {
           Resume
         </h3>
         <p className="text-sm md:text-base text-luxuryMuted font-light max-w-xl leading-relaxed mx-auto">
-          Solving complex problems through strategic thinking, product innovation, and AI-driven solutions.
+          {data.profile.title}
         </p>
 
         <div className="pt-6">

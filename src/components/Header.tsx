@@ -43,6 +43,7 @@ export default function Header() {
         <a href="#hero" className="hover:text-foreground transition-colors duration-300">About</a>
         <a href="#experience" className="hover:text-foreground transition-colors duration-300">Experience</a>
         <a href="#projects" className="hover:text-foreground transition-colors duration-300">Projects</a>
+        <a href="#strategy-vault" className="hover:text-foreground transition-colors duration-300 text-luxuryGold font-medium">Strategy Vault</a>
         <a href="#education" className="hover:text-foreground transition-colors duration-300">Education</a>
         <a href="#resume-builder" className="hover:text-foreground transition-colors duration-300">Resume</a>
       </nav>

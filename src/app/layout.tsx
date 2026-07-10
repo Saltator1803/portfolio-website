@@ -6,8 +6,8 @@ import { SmoothScrollProvider } from "@/context/SmoothScrollProvider";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Sanju Chowdhury | Tech Product Executive & 0→1 Builder",
-  description: "Cinematic portfolio demonstrating product strategy and database engine development architectures.",
+  title: "Sanju Chowdhury | Technical PM & Product Strategist",
+  description: "MBA candidate with a software developer background. Showcasing technical product strategy, GTM validation, and APM-track engineering execution.",
 };
 
 export default function RootLayout({

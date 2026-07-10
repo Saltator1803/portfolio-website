@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta / Facebook — AI PM Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0a0c0f; --panel:#12151a; --panel-2:#15191f; --line:#232a33; --amber:#0d9488; --cyan:#4fd1c5; --coral:#e8654f; --text:#e9e7e2; --muted:#8b92a0; --muted-2:#5b6270; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--text); font-family:'IBM Plex Sans', sans-serif; line-height:1.6; font-size:16px; }
+  ::selection{ background:var(--amber); color:#0a0c0f; }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; }
+  a{ color:var(--cyan); }
+  .shell{ display:grid; grid-template-columns: 220px 1fr; max-width:1180px; margin:0 auto; }
+  @media (max-width: 860px){ .shell{ grid-template-columns: 1fr; } .rail{ display:none; } }
+  .rail{ position:sticky; top:0; height:100vh; padding:48px 0 48px 32px; border-right:1px solid var(--line); }
+  .rail-trace{ position:relative; padding-left:20px; }
+  .rail-trace::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: linear-gradient(180deg, transparent, var(--amber) 8%, var(--amber) 92%, transparent); opacity:0.5; }
+  .rail a{ display:block; position:relative; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-decoration:none; padding:9px 0; letter-spacing:0.02em; transition: color .15s ease; }
+  .rail a::before{ content:""; position:absolute; left:-20px; top:15px; width:9px; height:9px; border-radius:50%; background:var(--bg); border:1px solid var(--muted-2); }
+  .rail a:hover{ color:var(--amber); } .rail a:hover::before{ border-color:var(--amber); background:var(--amber); }
+  .rail-brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13px; color:var(--text); letter-spacing:0.06em; margin-bottom:28px; text-transform:uppercase; }
+  .rail-brand span{ color:var(--amber); }
+  main{ padding: 0 40px 100px; } @media (max-width: 860px){ main{ padding:0 22px 80px; } }
+  .hero{ padding: 90px 0 60px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em; display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--cyan); display:inline-block; box-shadow: 0 0 8px var(--cyan); }
+  .hero h1{ font-size: clamp(34px, 5vw, 56px); font-weight:700; line-height:1.08; max-width: 800px; }
+  .hero .accent{ color:var(--amber); }
+  .hero-sub{ margin-top:22px; color:var(--muted); font-size:17px; max-width:620px; }
+  .stat-row{ margin-top:48px; display:grid; grid-template-columns: repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
+  .stat{ background:var(--panel); padding:24px 22px; }
+  .stat .num{ font-family:'IBM Plex Mono', monospace; font-size:28px; font-weight:600; color:var(--amber); }
+  .stat .label{ font-size:12.5px; color:var(--muted); margin-top:6px; }
+  section.card{ position:relative; margin: 64px 0; padding: 40px 36px; background:var(--panel); border:1px solid var(--line); }
+  .corner-mark{ position:absolute; width:16px; height:16px; border-color:var(--amber); border-style:solid; border-width:0; }
+  .corner-mark.tl{ top:-1px; left:-1px; border-top-width:2px; border-left-width:2px; }
+  .corner-mark.tr{ top:-1px; right:-1px; border-top-width:2px; border-right-width:2px; }
+  .corner-mark.bl{ bottom:-1px; left:-1px; border-bottom-width:2px; border-left-width:2px; }
+  .corner-mark.br{ bottom:-1px; right:-1px; border-bottom-width:2px; border-right-width:2px; }
+  .sec-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; }
+  section.card h2{ font-size: 26px; margin-bottom:18px; font-weight:600; }
+  section.card p{ color:var(--text); font-size:15.5px; max-width:760px; }
+  section.card p + p{ margin-top:14px; }
+  section.card ul{ margin-top:16px; padding-left:0; list-style:none; }
+  section.card li{ position:relative; padding-left:22px; margin-bottom:12px; color:var(--text); font-size:15px; max-width:740px; }
+  section.card li::before{ content:"▸"; position:absolute; left:0; color:var(--cyan); }
+  .tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:11px; padding:4px 9px; border:1px solid var(--line); color:var(--muted); letter-spacing:0.04em; margin-bottom:16px; }
+  .tldr{ border-left:3px solid var(--amber); background: linear-gradient(90deg, rgba(13,148,136,0.07), transparent 60%); }
+  .tldr p{ font-size:16.5px; }
+  .chart-wrap{ margin-top:24px; padding:24px 20px 12px; background:var(--panel-2); border:1px solid var(--line); }
+  .chart-caption{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:12px; text-align:right; }
+  .closer{ margin: 70px 0 0; padding: 44px 36px; text-align:center; border:1px solid var(--amber); background: radial-gradient(ellipse at 50% 0%, rgba(13,148,136,0.08), transparent 70%); }
+  .closer p{ font-family:'Space Grotesk', sans-serif; font-size: clamp(19px, 2.4vw, 25px); font-weight:600; line-height:1.4; color:var(--text); max-width:740px; margin:0 auto; }
+  .closer p .accent{ color:var(--amber); }
+  .closer-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:18px; letter-spacing:0.08em; text-transform:uppercase; }
+  .metric-row{ display:flex; gap:28px; flex-wrap:wrap; margin-top:20px; padding-top:20px; border-top:1px dashed var(--line); }
+  .metric{ min-width:150px; } .metric .v{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:19px; } .metric .k{ font-size:12px; color:var(--muted); margin-top:3px; }
+  .moat-stack{ margin-top:28px; display:flex; flex-direction:column; gap:2px; }
+  .moat-layer{ padding:18px 20px; background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--cyan); display:grid; grid-template-columns: 32px 1fr; gap:16px; align-items:start; }
+  .moat-layer .idx{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:13px; }
+  .moat-layer h4{ font-family:'Space Grotesk', sans-serif; font-size:15.5px; margin-bottom:6px; color:var(--text); }
+  .moat-layer p{ font-size:14px; color:var(--muted); max-width:680px; }
+  footer{ max-width:1180px; margin:0 auto; padding:30px 40px 60px; color:var(--muted-2); font-size:12px; font-family:'IBM Plex Mono', monospace; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="rail">
+    <div class="rail-brand">Case Study <span>// META</span></div>
+    <div class="rail-trace">
+      <a href="#tldr">01 · TL;DR</a>
+      <a href="#problem">02 · The Problem</a>
+      <a href="#context">03 · Context</a>
+      <a href="#lens">04 · The Lens</a>
+      <a href="#ai-angle">05 · AI Angle</a>
+      <a href="#call">06 · My Call</a>
+      <a href="#metrics">07 · Measurement</a>
+    </div>
+  </nav>
+  <main>
+    <div class="hero">
+      <div class="eyebrow">Competitive Moat & Platform Defense</div>
+      <div class="dateline" style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin:-10px 0 20px; letter-spacing:0.04em; text-transform:uppercase;">Analysis as of May 2026 — figures may have moved since.</div>
+      <h1>Meta Doesn't Beat Competitors — It Makes Leaving <span class="accent">Cost More</span></h1>
+      <p class="hero-sub">Independent case study — Platform Defense track. TikTok took the attention. Meta didn't chase it back with better content — it changed what "leaving Facebook" costs a user.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">3.56B</div><div class="label">daily active people across Meta's apps</div></div>
+        <div class="stat"><div class="num">$56.3B</div><div class="label">Q1 2026 revenue, +33% YoY</div></div>
+        <div class="stat"><div class="num">40%</div><div class="label">operating margin, funding $100B+ AI buildout</div></div>
+      </div>
+    </div>
+
+    <section class="card tldr" id="tldr">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">01 / TL;DR</div>
+      <h2>Meta's moat isn't attention. It's the social graph you'd have to rebuild.</h2>
+      <p>Meta's 3.56 billion daily active people across Facebook, Instagram, WhatsApp, and Messenger is often described as an advertising asset — but the more important fact is that it's a switching-cost asset. Users don't stay because Meta's apps are the best-designed; they stay because their friends, family, and business contacts are already there, and no competitor can replicate that graph by building better features. Even as TikTok fragmented user attention, Meta's moat held because attention and network aren't the same thing.</p>
+    </section>
+
+    <section class="card" id="problem">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">02 / The Problem</div>
+      <h2>How do you defend a network when the competitor isn't trying to steal your network — just your time?</h2>
+      <p>TikTok didn't ask users to leave Facebook or delete Instagram; it just captured a growing share of their daily attention. That's a different threat than a direct network competitor, and it demands a different defense: Meta couldn't out-network TikTok (TikTok doesn't need your friends to be valuable), so it had to compete on the thing TikTok was actually winning — algorithmic content discovery — while quietly protecting the graph-based moat that TikTok can't touch.</p>
+    </section>
+
+    <section class="card" id="context">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">03 / Context — only what matters</div>
+      <h2>The numbers behind the "network effect isn't dead" argument</h2>
+      <ul>
+        <li>Ad impressions rose 19% and average daily active people hit 3.56 billion in March 2026 — growth continued even at Meta's already-massive scale, the opposite of what a saturated, declining network effect should look like.</li>
+        <li>In May 2026, Meta fought an EU order that would require it to give rival AI chatbots free access to WhatsApp — a live example of how valuable messaging-network access has become, valuable enough for regulators and AI companies to fight over.</li>
+        <li>Meta's proprietary AI chips (MTIA v2) and ad-targeting algorithms are widening the moat in the near term — AI-powered targeting is a cost and performance advantage competitors can't easily replicate at Meta's data scale.</li>
+        <li>Capital expenditure exceeding $70 billion annually to serve billions of users is itself a barrier to entry — no new social network can afford the infrastructure to compete at this scale even if it somehow built comparable engagement.</li>
+      </ul>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 700 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="165" x2="670" y2="165" stroke="#232a33" stroke-width="1"/>
+          <g font-family="IBM Plex Mono" font-size="11" fill="#8b92a0">
+            <rect x="90" y="35" width="55" height="130" fill="#0d9488"/>
+            <text x="117" y="185" text-anchor="middle">Meta</text>
+            <text x="117" y="25" text-anchor="middle" fill="#e9e7e2">3.56B DAP</text>
+
+            <rect x="280" y="105" width="55" height="60" fill="#4fd1c5" opacity="0.7"/>
+            <text x="307" y="185" text-anchor="middle">ChatGPT</text>
+            <text x="307" y="95" text-anchor="middle" fill="#e9e7e2">1.1B MAU</text>
+
+            <rect x="470" y="120" width="55" height="45" fill="#8b92a0"/>
+            <text x="497" y="185" text-anchor="middle">Gemini</text>
+            <text x="497" y="110" text-anchor="middle" fill="#e9e7e2">0.9B MAU</text>
+          </g>
+        </svg>
+        <div class="chart-caption">Fig. 1 — Meta's Family of Apps scale vs. leading AI assistants by monthly reach, 2026</div>
+      </div>
+    </section>
+
+    <section class="card" id="lens">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <span class="tag">LENS: PORTER'S FIVE FORCES — BARRIERS TO ENTRY</span>
+      <div class="sec-label">04 / The Lens</div>
+      <h2>Three structural forces that make Meta nearly impossible to dislodge</h2>
+      <div class="moat-stack">
+        <div class="moat-layer">
+          <div class="idx">01</div>
+          <div><h4>Network effects compound, they don't decay</h4><p>Each new user makes the network more valuable for everyone already in it — a feedback loop that a content-only competitor like TikTok structurally cannot replicate, because TikTok's value doesn't depend on knowing who else is on the platform.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">02</div>
+          <div><h4>Capital intensity as a barrier</h4><p>$70B+ in annual infrastructure spend, plus a $100B+ AI buildout, sets a capital floor that only a handful of companies on earth could even attempt to match — long before considering whether they could also build the network.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">03</div>
+          <div><h4>Regulatory scrutiny is itself evidence of the moat's value</h4><p>The EU fighting Meta over WhatsApp access to rival AI chatbots is a strange kind of compliment — regulators only intervene this aggressively when a platform's gatekeeping power is genuinely significant.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="ai-angle">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">05 / The AI Angle</div>
+      <h2>Meta AI's real job isn't to beat ChatGPT — it's to keep the graph closed</h2>
+      <p>Meta AI's billion-plus reach through WhatsApp, Instagram, and Facebook isn't really competing for "best chatbot" mindshare — its function is defensive: keeping AI-native competitors like ChatGPT or Perplexity from becoming the layer users route requests through instead of Meta's own apps. The WhatsApp access dispute makes this explicit: Meta is treating AI-chatbot access to its messaging network as a strategic chokepoint worth a regulatory fight, not just a product feature.</p>
+    </section>
+
+    <section class="card" id="call">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">06 / My Call</div>
+      <h2>Defend the graph fiercely; treat content discovery as a feature battle, not an existential one</h2>
+      <p>If I were leading platform strategy at Meta, I would resist over-indexing engineering resources on winning the short-form-video attention war against TikTok — that's a battle Meta can compete in but never structurally "win" the way it wins on network effects. I'd prioritize protecting messaging-network exclusivity (the WhatsApp dispute) and deepening AI-driven ad targeting, since those two levers compound the actual moat rather than chasing a competitor on their home turf.</p>
+      <p><strong>The tradeoff I'd accept:</strong> occasionally looking like the "less exciting" platform in short-form content, in exchange for defending the structural advantage — the graph — that no amount of competitor creativity can replicate.</p>
+    <p style="margin-top: 18px; border-top: 1px dashed var(--line); padding-top: 14px; color: var(--cyan);"><strong style="color: var(--amber);">Developer Perspective:</strong> As an engineer, I'd read Meta's "switching cost" less as a user-psychology story and more as a deliberate infrastructure decision — account graph and cross-app identity systems that were engineered to make data portability hard, which is a technical choice with a business outcome, not an accident of platform growth.</p></section>
+
+    <section class="card" id="metrics">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">07 / How I'd Measure It</div>
+      <h2>North Star + two supporting signals</h2>
+      <div class="metric-row">
+        <div class="metric"><div class="v">★ North Star</div><div class="k">Cross-app messaging network exclusivity rate — the truest measure of graph defensibility, not time-spent metrics</div></div>
+        <div class="metric"><div class="v">Signal 01</div><div class="k">Ad revenue per daily active person — tracks whether AI-targeting is widening the monetization gap over competitors</div></div>
+        <div class="metric"><div class="v">Signal 02</div><div class="k">Regulatory intervention frequency — a contrarian but real proxy for how much gatekeeping power the platform still holds</div></div>
+      </div>
+    </section>
+
+    <div class="closer">
+      <p>Meta doesn't need you to <span class="accent">love</span> Facebook — it just needs everyone you know to already be there.</p>
+      <div class="closer-tag">END OF CASE STUDY // META-01</div>
+    </div>
+  </main>
+</div>
+Case study prepared as an AI Product Management portfolio exercise · Figures sourced from Meta Q1 2026 earnings, Morningstar, Insider Monkey, and EcoMoat analysis, 2026<br><span style="display: block; margin-top: 6px; opacity: 0.75; font-size: 11px;">This is an independent, self-directed practice case study; AI was utilized for research and structuring support, while final problem framing, analysis, and strategic judgment were developed solely by me.</span></footer>
+</body>
+</html>

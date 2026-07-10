@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic — AI PM Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0a0c0f; --panel:#12151a; --panel-2:#15191f; --line:#232a33; --amber:#e8a33d; --cyan:#4fd1c5; --coral:#e8654f; --text:#e9e7e2; --muted:#8b92a0; --muted-2:#5b6270; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--text); font-family:'IBM Plex Sans', sans-serif; line-height:1.6; font-size:16px; }
+  ::selection{ background:var(--amber); color:#0a0c0f; }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; }
+  a{ color:var(--cyan); }
+  .shell{ display:grid; grid-template-columns: 220px 1fr; max-width:1180px; margin:0 auto; }
+  @media (max-width: 860px){ .shell{ grid-template-columns: 1fr; } .rail{ display:none; } }
+  .rail{ position:sticky; top:0; height:100vh; padding:48px 0 48px 32px; border-right:1px solid var(--line); }
+  .rail-trace{ position:relative; padding-left:20px; }
+  .rail-trace::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: linear-gradient(180deg, transparent, var(--amber) 8%, var(--amber) 92%, transparent); opacity:0.5; }
+  .rail a{ display:block; position:relative; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-decoration:none; padding:9px 0; letter-spacing:0.02em; transition: color .15s ease; }
+  .rail a::before{ content:""; position:absolute; left:-20px; top:15px; width:9px; height:9px; border-radius:50%; background:var(--bg); border:1px solid var(--muted-2); }
+  .rail a:hover{ color:var(--amber); } .rail a:hover::before{ border-color:var(--amber); background:var(--amber); }
+  .rail-brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13px; color:var(--text); letter-spacing:0.06em; margin-bottom:28px; text-transform:uppercase; }
+  .rail-brand span{ color:var(--amber); }
+  main{ padding: 0 40px 100px; } @media (max-width: 860px){ main{ padding:0 22px 80px; } }
+  .hero{ padding: 90px 0 60px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em; display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--cyan); display:inline-block; box-shadow: 0 0 8px var(--cyan); }
+  .hero h1{ font-size: clamp(34px, 5vw, 56px); font-weight:700; line-height:1.08; max-width: 800px; }
+  .hero .accent{ color:var(--amber); }
+  .hero-sub{ margin-top:22px; color:var(--muted); font-size:17px; max-width:620px; }
+  .stat-row{ margin-top:48px; display:grid; grid-template-columns: repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
+  .stat{ background:var(--panel); padding:24px 22px; }
+  .stat .num{ font-family:'IBM Plex Mono', monospace; font-size:28px; font-weight:600; color:var(--amber); }
+  .stat .label{ font-size:12.5px; color:var(--muted); margin-top:6px; }
+  section.card{ position:relative; margin: 64px 0; padding: 40px 36px; background:var(--panel); border:1px solid var(--line); }
+  .corner-mark{ position:absolute; width:16px; height:16px; border-color:var(--amber); border-style:solid; border-width:0; }
+  .corner-mark.tl{ top:-1px; left:-1px; border-top-width:2px; border-left-width:2px; }
+  .corner-mark.tr{ top:-1px; right:-1px; border-top-width:2px; border-right-width:2px; }
+  .corner-mark.bl{ bottom:-1px; left:-1px; border-bottom-width:2px; border-left-width:2px; }
+  .corner-mark.br{ bottom:-1px; right:-1px; border-bottom-width:2px; border-right-width:2px; }
+  .sec-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; }
+  section.card h2{ font-size: 26px; margin-bottom:18px; font-weight:600; }
+  section.card p{ color:var(--text); font-size:15.5px; max-width:760px; }
+  section.card p + p{ margin-top:14px; }
+  section.card ul{ margin-top:16px; padding-left:0; list-style:none; }
+  section.card li{ position:relative; padding-left:22px; margin-bottom:12px; color:var(--text); font-size:15px; max-width:740px; }
+  section.card li::before{ content:"▸"; position:absolute; left:0; color:var(--cyan); }
+  .tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:11px; padding:4px 9px; border:1px solid var(--line); color:var(--muted); letter-spacing:0.04em; margin-bottom:16px; }
+  .tldr{ border-left:3px solid var(--amber); background: linear-gradient(90deg, rgba(232,163,61,0.07), transparent 60%); }
+  .tldr p{ font-size:16.5px; }
+  .chart-wrap{ margin-top:24px; padding:24px 20px 12px; background:var(--panel-2); border:1px solid var(--line); }
+  .chart-caption{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:12px; text-align:right; }
+  .closer{ margin: 70px 0 0; padding: 44px 36px; text-align:center; border:1px solid var(--amber); background: radial-gradient(ellipse at 50% 0%, rgba(232,163,61,0.08), transparent 70%); }
+  .closer p{ font-family:'Space Grotesk', sans-serif; font-size: clamp(19px, 2.4vw, 25px); font-weight:600; line-height:1.4; color:var(--text); max-width:740px; margin:0 auto; }
+  .closer p .accent{ color:var(--amber); }
+  .closer-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:18px; letter-spacing:0.08em; text-transform:uppercase; }
+  .metric-row{ display:flex; gap:28px; flex-wrap:wrap; margin-top:20px; padding-top:20px; border-top:1px dashed var(--line); }
+  .metric{ min-width:150px; } .metric .v{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:19px; } .metric .k{ font-size:12px; color:var(--muted); margin-top:3px; }
+  .moat-stack{ margin-top:28px; display:flex; flex-direction:column; gap:2px; }
+  .moat-layer{ padding:18px 20px; background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--cyan); display:grid; grid-template-columns: 32px 1fr; gap:16px; align-items:start; }
+  .moat-layer .idx{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:13px; }
+  .moat-layer h4{ font-family:'Space Grotesk', sans-serif; font-size:15.5px; margin-bottom:6px; color:var(--text); }
+  .moat-layer p{ font-size:14px; color:var(--muted); max-width:680px; }
+  footer{ max-width:1180px; margin:0 auto; padding:30px 40px 60px; color:var(--muted-2); font-size:12px; font-family:'IBM Plex Mono', monospace; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="rail">
+    <div class="rail-brand">Case Study <span>// ANTHROPIC</span></div>
+    <div class="rail-trace">
+      <a href="#tldr">01 · TL;DR</a>
+      <a href="#problem">02 · The Problem</a>
+      <a href="#context">03 · Context</a>
+      <a href="#lens">04 · The Lens</a>
+      <a href="#ai-angle">05 · AI Angle</a>
+      <a href="#call">06 · My Call</a>
+      <a href="#metrics">07 · Measurement</a>
+    </div>
+  </nav>
+  <main>
+    <div class="hero">
+      <div class="eyebrow">Enterprise AI Product Strategy</div>
+      <h1>Anthropic: Betting the Company on the <span class="accent">Boring</span> Customer</h1>
+      <p class="hero-sub">Role simulated: AI Product Manager, Enterprise Strategy. While competitors chased consumer scale, Anthropic bet that the enterprise buyer — slower, pickier, but stickier — was the better business to build.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">$47B</div><div class="label">annualized revenue, May 2026</div></div>
+        <div class="stat"><div class="num">300K+</div><div class="label">business customers</div></div>
+        <div class="stat"><div class="num">$965B</div><div class="label">valuation, surpassing OpenAI</div></div>
+      </div>
+    </div>
+
+    <section class="card tldr" id="tldr">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">01 / TL;DR</div>
+      <h2>The quiet company just became the biggest one.</h2>
+      <p>In April 2026, Anthropic overtook OpenAI in annualized revenue — <strong>$47B versus roughly $25B</strong> — despite having a fraction of OpenAI's consumer users (245M vs. 1.1B monthly users). A month later its $965B valuation passed OpenAI's $852B. The reason isn't a better chatbot. It's that Anthropic generates <strong>~$192 in annual revenue per monthly active user versus OpenAI's ~$23</strong> — an 8x difference — because it built for the customer who pays the most per seat: the enterprise.</p>
+    </section>
+
+    <section class="card" id="problem">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">02 / The Problem</div>
+      <h2>How do you win a race everyone thinks is about consumer scale?</h2>
+      <p>By 2024, the AI market narrative was entirely about consumer adoption — weekly active users, app store rankings, viral moments. Anthropic had none of ChatGPT's brand recognition and none of Google's built-in distribution through Search or Android. The strategic question was whether a smaller, less-known lab could win by optimizing for a completely different metric: revenue per user and depth of enterprise integration, rather than headline user counts that make for good press releases but not necessarily good businesses.</p>
+    </section>
+
+    <section class="card" id="context">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">03 / Context — only what matters</div>
+      <h2>The numbers behind the bet</h2>
+      <ul>
+        <li><strong>Claude Code</strong>, launched as a standalone product in Feb 2025, hit $1B run-rate revenue by November 2025 — faster than any enterprise software product in history — and crossed <strong>$2.5B run-rate</strong> by February 2026.</li>
+        <li>Anthropic derives <strong>~85% of revenue from business customers</strong>, the inverse of OpenAI's ~85% consumer-subscription mix.</li>
+        <li>1 in 5 businesses on Ramp's payments platform now pay for Anthropic, up from 1 in 25 a year earlier — a 500% jump in enterprise adoption in twelve months.</li>
+        <li>79% of OpenAI's enterprise customers also pay for Anthropic — proof the enterprise AI market rewards a multi-vendor strategy rather than one winner-take-all platform.</li>
+      </ul>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 700 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="165" x2="670" y2="165" stroke="#232a33" stroke-width="1"/>
+          <g font-family="IBM Plex Mono" font-size="11" fill="#8b92a0">
+            <rect x="100" y="150" width="60" height="15" fill="#232a33"/>
+            <text x="130" y="185" text-anchor="middle">Dec 2024</text>
+            <text x="130" y="140" text-anchor="middle" fill="#e9e7e2">$1B</text>
+
+            <rect x="280" y="120" width="60" height="45" fill="#4fd1c5" opacity="0.55"/>
+            <text x="310" y="185" text-anchor="middle">Feb 2026</text>
+            <text x="310" y="110" text-anchor="middle" fill="#e9e7e2">$14B</text>
+
+            <rect x="460" y="30" width="60" height="135" fill="#e8a33d"/>
+            <text x="490" y="185" text-anchor="middle">May 2026</text>
+            <text x="490" y="20" text-anchor="middle" fill="#e9e7e2">$47B</text>
+          </g>
+        </svg>
+        <div class="chart-caption">Fig. 1 — Anthropic annualized revenue growth, Dec 2024–May 2026</div>
+      </div>
+    </section>
+
+    <section class="card" id="lens">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <span class="tag">LENS: BUSINESS MODEL CANVAS</span>
+      <div class="sec-label">04 / The Lens</div>
+      <h2>Three deliberate inversions of the "obvious" AI playbook</h2>
+      <div class="moat-stack">
+        <div class="moat-layer">
+          <div class="idx">01</div>
+          <div><h4>Distribution: multi-cloud instead of single-platform</h4><p>Claude is the only frontier model available on all three major clouds — AWS Bedrock, Google Vertex AI, and Azure. Instead of picking one distribution partner, Anthropic made itself impossible for any single cloud vendor to gatekeep.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">02</div>
+          <div><h4>Product wedge: coding, not chat</h4><p>Claude Code became the entry point for enterprise adoption — a specific, high-value job (writing and reviewing code) rather than a general-purpose assistant competing head-on with ChatGPT's brand recognition.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">03</div>
+          <div><h4>Land-and-expand, not land-and-monetize-everyone</h4><p>Businesses starting with one use case — API, Claude Code, or Claude for Work — expand integrations organically. Customers spending $1M+ annually grew from a dozen to 500+ in two years by depth of integration, not volume of sign-ups.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="ai-angle">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">05 / The AI Angle</div>
+      <h2>Safety as a GTM asset, not a compliance cost</h2>
+      <p>Anthropic's Public Benefit Corporation structure and safety-first branding are usually framed as an ethical stance — but they're also a genuine product differentiator with regulated enterprises (healthcare, finance, government) who need auditability and predictability more than raw capability. Claude for Enterprise now serves HIPAA-governed healthcare organizations, and government deployments (Maryland's benefits system, the Government of Alberta) suggest safety-as-positioning opens categories that a "move fast" consumer brand can't easily enter.</p>
+    </section>
+
+    <section class="card" id="call">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">06 / My Call</div>
+      <h2>Don't chase consumer share. Go deeper into regulated verticals.</h2>
+      <p>If I were leading enterprise strategy at Anthropic, I would resist the temptation to fight for consumer mindshare against ChatGPT's 1.1B users — that's a battle fought on brand recognition, where Anthropic will always be second. Instead, double down on vertical-specific compliance tooling (healthcare, government, financial services) where "boring, reliable, auditable" beats "exciting" every time a procurement committee is involved.</p>
+      <p><strong>The tradeoff I'd accept:</strong> slower top-line consumer growth in exchange for revenue that is stickier, higher-margin, and much harder for a competitor to dislodge once it's embedded in a regulated workflow.</p>
+    </section>
+
+    <section class="card" id="metrics">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">07 / How I'd Measure It</div>
+      <h2>North Star + two supporting signals</h2>
+      <div class="metric-row">
+        <div class="metric"><div class="v">★ North Star</div><div class="k">Revenue per monthly active user — the metric that actually explains Anthropic's valuation, not headline user count</div></div>
+        <div class="metric"><div class="v">Signal 01</div><div class="k">% of customers spending $1M+/year — depth of enterprise lock-in over time</div></div>
+        <div class="metric"><div class="v">Signal 02</div><div class="k">Multi-product attach rate (API + Claude Code + Claude for Work) per account — proxy for land-and-expand health</div></div>
+      </div>
+    </section>
+
+    <div class="closer">
+      <p>Anthropic didn't win by having <span class="accent">more users</span> than OpenAI — it won by making each user <span class="accent">worth 8 times more</span>.</p>
+      <div class="closer-tag">END OF CASE STUDY // ANTH-01</div>
+    </div>
+  </main>
+</div>
+<footer>Case study prepared as an AI Product Management portfolio exercise · Figures sourced from Anthropic public announcements, Sacra, Sensor Tower, and Reuters reporting, 2025–2026</footer>
+</body>
+</html>

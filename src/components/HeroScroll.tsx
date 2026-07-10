@@ -37,8 +37,13 @@ export default function HeroScroll() {
               Structuring <span className="font-semibold text-foreground">Execution</span>.
             </h1>
             <p className="text-sm md:text-lg text-luxuryMuted tracking-wider font-light max-w-2xl leading-relaxed">
-              {data.profile.title}. Focused on {data.profile.focus.toLowerCase()}
+              {data.profile.title}
             </p>
+            {data.profile.transitionMoment && (
+              <p className="text-xs md:text-sm text-luxuryMuted/70 max-w-2xl leading-relaxed font-light mt-2 border-l border-luxuryGold/40 pl-4">
+                {data.profile.transitionMoment}
+              </p>
+            )}
             <div className="pt-4 flex items-center gap-4 text-xs tracking-superWide text-luxuryGold uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-luxuryGold animate-ping" />
               0 → 1 Enterprise Builder

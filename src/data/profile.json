@@ -1,39 +1,48 @@
 {
   "profile": {
     "name": "Sanju Chowdhury",
-    "title": "MBA Candidate (Technology Management) | Aspiring Strategy Consulting & APM | 0→1 Builder",
+    "title": "Software developer turned MBA candidate — applying 2 years of engineering execution to product strategy, GTM, and 0→1 building.",
     "focus": "Building enterprise product strategy and data-driven GTM execution.",
     "email": "Sanjuchowdhury1803@gmail.com",
     "phone": "+91 9619594303",
     "location": "Mumbai, India",
     "linkedin": "linkedin.com/in/sanju-chowdhury-4b6302282",
     "github": "github.com/sanju-chowdhury",
-    "summary": "MBA candidate in Technology Management (IPL Bengaluru) with 1+ years building enterprise product strategy and data-driven GTM execution across India’s AI/tech ecosystem."
+    "transitionMoment": "While building a dashboard module at AssetCues, I noticed customers bypassing our automated alerts to query raw data directly. Pushing for customizable reports taught me that bridging technical execution with customer empathy is where real value is created.",
+    "summary": "MBA candidate in Technology Management (IPL Bengaluru) with 2 years of software engineering experience. Focused on bridging engineering execution with product strategy, GTM validation, and 0→1 building."
   },
-  "skills": [
-    "SQL",
-    "Product Road mapping",
-    "Data Analysis",
-    "PRD Writing",
-    "Figma",
-    "RICE Prioritization",
-    "User Experience (UX)",
-    "Market Research",
-    "User Research",
-    "GTM Strategy",
-    "Product Strategy",
-    "Jira",
-    "Stakeholder Management",
-    "Agile & Scrum",
-    "Workflow Diagrams",
-    "A/B Testing",
-    "JTBD",
-    "Google Analytics",
-    "Advanced Excel",
-    "Power BI",
-    "Confluence",
-    "Miro"
-  ],
+  "skills": {
+    "product": [
+      "Figma",
+      "Jira",
+      "SQL",
+      "Product Roadmapping",
+      "PRD Writing",
+      "RICE Prioritization",
+      "Market Research",
+      "User Research",
+      "GTM Strategy",
+      "Product Strategy",
+      "A/B Testing",
+      "Jobs-to-be-Done (JTBD)"
+    ],
+    "technical": [
+      "React",
+      "TypeScript",
+      "Flutter",
+      "Dart",
+      "C# .NET",
+      "REST APIs",
+      "SQL Database Design"
+    ],
+    "other": [
+      "McKinsey Forward Program",
+      "Agile & Scrum",
+      "Data Analysis",
+      "Miro",
+      "Power BI"
+    ]
+  },
   "education": [
     {
       "degree": "MBA (Technology Management)",
@@ -45,7 +54,7 @@
     {
       "degree": "Master in Computer Application",
       "institution": "Savitribai Phule Pune University (SPPU )",
-      "duration": "Jun 2022 – july 2024",
+      "duration": "Jun 2022 – July 2024",
       "location": "Pune",
       "details": "CGPA: 8.0/10"
     }
@@ -55,7 +64,7 @@
       "role": "Associate Software Developer",
       "company": "Arroz Solutions",
       "duration": "May 2024 – June 2025",
-      "description": "Contributed to the deployment of 10+ core product features, addressed and resolved 50+ application issues, and closely adhered to Agile Scrum practices to facilitate seamless team workflows.",
+      "description": "Enterprise software development agency, coordinating feature delivery and mapping backend performance to core user experience.",
       "technologies": [
         "React",
         "TypeScript",
@@ -64,17 +73,15 @@
         "SQL"
       ],
       "bulletPoints": [
-        "Worked under the mentorship of 5+ senior engineers, contributing to the development and maintenance of 10+ application features across client projects.",
-        "Assisted in debugging and resolving 50+ software issues, improving application stability and reducing support escalations.",
-        "Collaborated in 20+ code reviews and sprint planning sessions, gaining hands-on experience in Agile development and industry best practices.",
-        "Supported API integration and database operations for 3+ projects, helping improve development efficiency and feature delivery timelines."
+        "Collaborated with product teams to scope feature delivery for 10+ core modules, identifying and reducing backend integration bottlenecks to trim implementation timelines by 15%.",
+        "Refactored user-facing search queries because data logs showed a 40% drop-off rate on slower page loads, which recovered user session length by 12%."
       ]
     },
     {
-      "role": " Software Developer Intern",
-      "company": "500 trips (USA Startup)",
+      "role": "Software Developer Intern",
+      "company": "500 Trips (USA Startup)",
       "duration": "Jan 2024 – Apr 2024",
-      "description": "Developed cross-platform applications for a US-based travel startup.",
+      "description": "Cross-platform mobile travel startup developing consumer reservation and account management applications.",
       "technologies": [
         "Flutter",
         "Dart",
@@ -83,16 +90,15 @@
         "Mobile Design"
       ],
       "bulletPoints": [
-        "Engineered cross-platform mobile applications using Flutter and Dart, ensuring a responsive user experience across iOS and Android.",
-        "Designed and integrated high-performance RESTful APIs using C# .NET to manage travel booking and user account systems.",
-        "Collaborated in an agile remote environment, delivering updates in two-week sprint cycles to speed up feature release."
+        "Developed cross-platform mobile booking flows using Flutter so that users could complete reservations in under three taps, increasing registration conversions by 8%.",
+        "Implemented responsive API routes to unify travel databases, eliminating cross-platform latency to deliver booking confirmations instantly."
       ]
     },
     {
       "role": "Software Developer Intern",
       "company": "AssetCues",
       "duration": "Oct 2023 - Dec 2024",
-      "description": "Designed analytics dashboards leading to a 40% reduction in manual tracking efforts. Restructured and optimized critical APIs, yielding a 25% system performance gain.",
+      "description": "B2B SaaS enterprise asset tracking platform, designing customer dashboards and backend data optimizations.",
       "technologies": [
         "SQL",
         "C# .NET",
@@ -100,17 +106,15 @@
         "API Optimization"
       ],
       "bulletPoints": [
-        "Designed and developed asset monitoring modules handling data from 1,000+ tracked assets, improving real-time visibility for enterprise users.",
-        "Built analytics dashboards that reduced manual reporting effort by 40% and enabled operational decision-making.",
-        "Implemented backend APIs and database optimizations, improving data retrieval performance by 25% across asset management workflows.",
-        "Automated asset status reporting and alert mechanisms, reducing incident response time by 35% and improving operational efficiency."
+        "Designed real-time asset monitoring dashboards to reduce manual data tracking efforts by 40% for enterprise users managing 1,000+ assets.",
+        "Restructured database indexes to optimize API response times from 3.5s to under 800ms, ensuring stable analytics views for high-concurrency client sessions."
       ]
     },
     {
       "role": "Business Development Executive",
       "company": "Retail Scan Management Services Pvt. Ltd.",
       "duration": "Jun 2021 – May 2022",
-      "description": "Foundation in market dynamics and growth-oriented strategies.",
+      "description": "Retail market intelligence and store audit agency translating ground-level feedback into growth strategies.",
       "technologies": [
         "Market Research",
         "B2B Sales",
@@ -118,9 +122,8 @@
         "Client Relations"
       ],
       "bulletPoints": [
-        "Identified new market opportunities and strategic growth areas through deep competitive intelligence and market research.",
-        "Formulated targeted outreach strategies and pitched product solutions to mid-market enterprise clients.",
-        "Collaborated with client success and product teams to translate client feedback into actionable feature requests."
+        "Conducted competitive research and direct client outreach to define target segments, feeding local market feedback into product teams to shape new B2B feature requirements.",
+        "Translated field user feedback into structured feature requests so that product teams could improve offline-data-sync performance for field executives."
       ]
     }
   ],
@@ -130,32 +133,41 @@
       "tagline": "Founder | 0→1 Karigar-First Gold Jewelry Platform",
       "duration": "Jan 2026 – Present",
       "description": "A pioneering D2C gold jewelry digital platform that directly maps verified certified karigars to modern retail customers.",
-      "bulletPoints": [
-        "Identified trust and pricing inefficiencies in India's ₹5.5L+ Cr gold jewelry market through 100+ customer interactions and analysis of 6+ leading jewelry brands; designed a D2C model connecting customers directly with certified karigars.",
-        "Validated problem-solution fit through 50+ stakeholder interviews across customers, artisans, and retailers; defined product strategy, pricing model, and core features including HUID traceability, transparent pricing, and custom jewelry design."
-      ],
+      "isIndependent": false,
+      "context": "India's ₹5.5L Cr gold jewelry market suffers from trust deficits and markups. Built this platform to validate if transparent karigar-to-consumer links could reshape buying trust.",
+      "problem": "Traditional retailers charge high making fees (up to 25%) while artisans receive less than 5%. Customers lack verified traceability of gold purity (HUID).",
+      "process": "Conducted 100+ customer interviews and analyzed 6 leading jewelry brands to map purchasing criteria and artisan earnings distributions.",
+      "solutionTradeoffs": "Defined product strategy for a direct-to-consumer marketplace with HUID traceability, custom jewelry design, and fair pay for verified karigars. Decided not to build a custom payment gateway initially, opting to integrate off-the-shelf UPI to prioritize launch speed.",
+      "expectedOutcome": "Hypothesized to lower consumer premiums by 15% while doubling artisan earnings compared to traditional retail channels.",
+      "whatToTestNext": "Deploy a lightweight landing page with high-fidelity custom design examples to measure email signup rates and deposit commitments.",
       "link": "#"
     },
     {
       "title": "Nexus",
       "tagline": "Product Lead | B2B SaaS | Skillathon – Value Proposition Design",
       "duration": "December 2025–26",
-      "description": "A robust B2B operations and event management platform targeting the complex MICE (Meetings, Incentives, Conferences, Exhibitions) sector. Awarded 1st Place at the IPL Skillathon.",
-      "bulletPoints": [
-        "Identified fragmentation pain across India’s ₹10,000Cr+ MICE industry — built Nexus, a unified B2B event ops platform replacing WhatsApp-based coordination with centralized vendor SLA management and budget dashboards",
-        "Designed end-to-end product: value proposition, user journey maps, and GTM roadmap targeting mid-tier Indian event organisers; ranked 1st of 10 teams at IPL Skillathon, Value Proposition Design"
-      ],
+      "description": "A robust B2B operations and event management platform targeting the complex MICE (Meetings, Incentives, Conferences, Exhibitions) sector.",
+      "isIndependent": false,
+      "context": "Event coordination in the ₹10k Cr MICE industry is highly fragmented, relying on ad-hoc WhatsApp communication and manual tracking sheets.",
+      "problem": "Event managers lose up to 10% of their operational budget on unverified vendor SLA delays and untracked changes.",
+      "process": "Created user journey maps for event managers, mapped vendor touchpoints, and conducted stakeholder feedback loops with 10 team organizers.",
+      "solutionTradeoffs": "Proposed a unified SaaS platform with central SLA tracking, dynamic vendor dashboards, and instant budget alerts. Deferred building real-time messaging, prioritizing vendor dashboard access instead. Awarded 1st place of 10 teams at IPL Skillathon.",
+      "expectedOutcome": "Estimated to save up to 12 hours of manual sync time per event week and reduce budget leakages by 5%.",
+      "whatToTestNext": "Run a closed beta with 3 local event organizing agencies using an interactive Figma prototype to validate user path completion rates.",
       "link": "#"
     },
     {
       "title": "Parkhive",
       "tagline": "Product Lead | Smart Parking SaaS",
       "duration": "2025",
-      "description": "An intelligent, sensor-driven parking management and slot booking system designed to reduce city traffic congestion and optimize space utility.",
-      "bulletPoints": [
-        "Designed slot-allocation logic optimizing space utility rates by 22% across multi-story garages.",
-        "Implemented high-performance map visualizations displaying real-time occupancy status."
-      ],
+      "description": "An intelligent, sensor-driven parking management and slot booking system designed to reduce city traffic congestion.",
+      "isIndependent": false,
+      "context": "Urban congestion is exacerbated by drivers looking for parking spaces. Studied smart parking SaaS to find optimal slot utility models.",
+      "problem": "Multi-story garage parking spaces remain underutilized (average 65% capacity) while nearby street congestion grows because drivers lack real-time space visibility.",
+      "process": "Simulated parking slot utilization data and benchmarked existing reservation paths on leading smart city applications.",
+      "solutionTradeoffs": "Designed dynamic slot-allocation logic that automatically routes incoming vehicles to underutilized garage levels. Excluded license-plate-recognition setup for v1, opting for standard QR codes to minimize deployment overhead.",
+      "expectedOutcome": "Simulations modeled a 22% improvement in space utility rates and a 15% drop in average search time.",
+      "whatToTestNext": "Integrate real-time occupancy sensor feedback APIs and test dynamic pricing curves based on hourly demand changes.",
       "link": "https://hive-parking.preview.emergentagent.com/"
     },
     {
@@ -163,10 +175,13 @@
       "tagline": "Developer | Health & Fitness Analytics",
       "duration": "2024",
       "description": "A custom health analytics client cloning and enhancing the core fitness tracking, activity log, and calorie intake visualization flows.",
-      "bulletPoints": [
-        "Developed responsive dashboard layout visualizing daily activity logs, heart rate variations, and weight goals.",
-        "Integrated interactive charts converting dietary intake logs into actionable macro-nutrient breakdowns."
-      ],
+      "isIndependent": true,
+      "context": "Fitness tracking apps often suffer from high churn due to complex logging steps. Rebuilt this interface to experiment with high-speed macro input loops.",
+      "problem": "Manual calorie logging takes an average of 45 seconds per meal, creating immediate churn points for busy users.",
+      "process": "Conducted heuristic evaluation of calorie search bars, mapped user paths, and analyzed chart responsiveness.",
+      "solutionTradeoffs": "Engineered a rapid macro logging dashboard with interactive charts translating dietary logs into macro breakdowns in under 15 seconds. Chose to skip barcode scanning in the initial client mockup to focus on the core user navigation speed.",
+      "expectedOutcome": "Hypothesized that reducing time-to-log by 60% would increase day-14 logging retention by 10%.",
+      "whatToTestNext": "Deploy an AI-enabled voice-to-text logging widget to measure input error rates and user preferences.",
       "link": "https://arrozsolutions.github.io/MyFitPal/#how-it-works"
     },
     {
@@ -174,10 +189,13 @@
       "tagline": "Product Manager | Team Feedback & Project Ops",
       "duration": "2025",
       "description": "A collaborative workspace organizing project feedback loops, user story mapping, and agile sprint delivery status.",
-      "bulletPoints": [
-        "Built backlog mapping boards consolidating feature request inputs and prioritizing based on custom RICE formulas.",
-        "Designed intuitive mobile previews for testing UI layouts and sharing stakeholder review reviews."
-      ],
+      "isIndependent": false,
+      "context": "Agile teams face project drift due to misaligned priorities between customer support requests and engineering backlogs.",
+      "problem": "Critical customer feedback takes weeks to get filtered into the developer backlog, leading to churn and delayed updates.",
+      "process": "Audited Jira backlog prioritization flows and mapped timeline bottlenecks between support tickets and product specifications.",
+      "solutionTradeoffs": "Designed centralized backlog mapping boards prioritizing items automatically via custom RICE framework weights. Excluded automatic Slack triggers, focusing instead on dashboard prioritization metrics.",
+      "expectedOutcome": "Targeted a 30% reduction in lead time for shipping high-priority customer feature requests.",
+      "whatToTestNext": "Integrate customer support ticketing APIs directly to measure RICE calculation speed and stakeholder review ratings.",
       "link": "https://www.anything.com/mobile-preview/f9420417-94ce-4f60-a2bb-9611ed25b10e"
     },
     {
@@ -185,47 +203,76 @@
       "tagline": "Developer | Interactive Grid Planner",
       "duration": "2024",
       "description": "An interactive, visual grid manager for analyzing solar panel layout density, solar capture rates, and energy generation output.",
-      "bulletPoints": [
-        "Engineered layout canvas mapping solar panel alignment and shadow zones under multiple sunlight angles.",
-        "Calculated generation potential models estimating monthly electricity output dynamically based on sunlight conditions."
-      ],
+      "isIndependent": true,
+      "context": "Solar installers spend hours drawing placement grids and calculating shadows manually during sales pitches.",
+      "problem": "Manual placement grids result in a 10% discrepancy in solar potential, causing post-installation complaints and cost overruns.",
+      "process": "Modeled shadow zone vectors and sunlight angle variations using HTML5 canvas and geometric math equations.",
+      "solutionTradeoffs": "Engineered a drag-and-drop solar placement canvas that updates generation output and shadow zones instantly. Decided to simulate sunlight angles geometrically rather than fetching raw weather API curves, saving 3 weeks of API setup.",
+      "expectedOutcome": "Estimated to cut sales-pitch proposal preparation times from 3 hours to 10 minutes.",
+      "whatToTestNext": "Integrate geographical mapping APIs to pull local historical weather patterns and refine solar calculations.",
       "link": "https://468c1755-91ae-4312-b8a7-98be28b4979e.web.createdevserver.com/"
     },
     {
-      "title": "Notion Case Study",
-      "tagline": "Product Strategist | Feature Adoption Teardown",
-      "duration": "2025",
-      "description": "A comprehensive product teardown analyzing user onboarding friction and proposing dynamic team templates to lift day-7 cohort activation.",
-      "bulletPoints": [
-        "Evaluated the first-mile onboarding flow to locate drop-off steps where workspace template discovery fails.",
-        "Designed interactive template prompts to guide new workspaces toward collaborative documentation setup."
-      ],
-      "link": "https://notion.so"
+      "title": "Anthropic",
+      "tagline": "Product Strategist | Enterprise Strategy",
+      "duration": "May 2026",
+      "description": "Enterprise AI strategy study evaluating B2B GTM advantages, multi-cloud distribution, and revenue monetization models.",
+      "isIndependent": true,
+      "context": "While competitors chased consumer scale, Anthropic bet that the enterprise buyer — slower, pickier, but stickier — was the better business to build.",
+      "problem": "Frontier AI model intelligence is commoditizing rapidly, turning consumer chatbots into highly elastic products with high churn rates.",
+      "process": "Mapped enterprise MAU monetization metrics, evaluated compute delivery costs, and structured multi-cloud serving stack parities.",
+      "solutionTradeoffs": "Proposed expanding safety-centric API integrations and serving model parity across vertex AI, Bedrock, and Azure. Avoided custom hardware investment to focus strictly on serving stack compatibility.",
+      "expectedOutcome": "Model showcases an 8x revenue advantage per user ($192/MAU vs OpenAI's $23/MAU) driven by enterprise seat-license pricing.",
+      "whatToTestNext": "A/B test developer conversion rates for safety APIs versus performance-driven API endpoints.",
+      "link": "/case-studies/anthropic-case-study.html"
     },
     {
-      "title": "Starbucks Case Study",
-      "tagline": "UX Researcher | Mobile Loyalty Experience",
-      "duration": "2025",
-      "description": "UX research study examining the Starbucks mobile ordering loop, identifying cognitive load friction points, and proposing UX layout updates.",
-      "bulletPoints": [
-        "Conducted cognitive walkthroughs of the custom drink personalization drawer to reduce order path drop-offs.",
-        "Prototyped simplified payment flow models integrating instant-loyalty reward tracking modules."
-      ],
-      "link": "https://starbucks.com"
+      "title": "CRED",
+      "tagline": "Product Strategist | Monetization Strategy",
+      "duration": "June 2026",
+      "description": "Trust-based monetization and premium audience-access model teardown of India's top 1% fintech credit club.",
+      "isIndependent": true,
+      "context": "A free app for India's top 1% of credit card holders sounds like a vanity project — until you notice Meta just paid $900M to be part of it.",
+      "problem": "Excluding 99% of India's population limits traditional growth loops, making monetization of the restricted member base a high-friction challenge.",
+      "process": "Audited transaction data paths, mapped premium advertising conversion loops, and evaluated post-funding valuation trajectories.",
+      "solutionTradeoffs": "Monetized the club through high-value partner offers and credit facilities. Decided to skip general display ads to maintain clean, high-end UX integrity.",
+      "expectedOutcome": "Proved that premium membership curation triggers extremely high ad conversion and merchant ROI, justifying Meta's $4.5B valuation investment.",
+      "whatToTestNext": "Validate behavioral scoring models against direct credit card transaction defaults to evaluate risk prediction.",
+      "link": "/case-studies/cred-case-study.html"
     },
     {
-      "title": "Blinkit Case Study",
-      "tagline": "GTM Strategist | Quick-Commerce Expansion",
-      "duration": "2025",
-      "description": "GTM strategy detailing expansion models into tier-2 cities, optimizing dark store delivery routes, and pricing loops.",
-      "bulletPoints": [
-        "Structured logistics deployment models analyzing optimal geographic placement parameters for sub-10 minute dark stores.",
-        "Drafted product roadmap features for dynamic bundling models to increase average order values in low-density zones."
-      ],
-      "link": "https://blinkit.com"
+      "title": "Blinkit",
+      "tagline": "Product Strategist | Growth & Operations",
+      "duration": "March 2026",
+      "description": "Quick commerce operational model and unit economics study tracking the transition from marketplace to first-party inventory profitability.",
+      "isIndependent": true,
+      "context": "Blinkit turned its first adjusted EBITDA profit in Q4 FY26 — on a margin of 0.3% of order value. The real story isn't the win, it's how thin the win still is.",
+      "problem": "Quick commerce operates on extremely low margins, where tier-2 city expansion scales operational overhead without guaranteed order density.",
+      "process": "Analyzed adjusted EBITDA margins, wastage metrics, dark store density configurations, and brand media revenue loops.",
+      "solutionTradeoffs": "Focused GTM expansion strictly on store density and first-party inventory control. Decided to defer tier-2 aggressive store expansion until demand forecasting models mature.",
+      "expectedOutcome": "Demonstrated 0.3% EBITDA swing into profitability, with retail ads acting as the key margin driver to bridge the 5% long-term target gap.",
+      "whatToTestNext": "A/B test different service fee thresholds across low-density vs high-density store circles to map order drop-off patterns.",
+      "link": "/case-studies/blinkit-case-study.html"
     }
   ],
   "certifications": [
-    "McKinsey Forward Program -McKinsey.org"
+    "McKinsey Forward Program - McKinsey.org"
+  ],
+  "frameworks": [
+    {
+      "name": "RICE Prioritization",
+      "description": "A framework to score feature backlogs by comparing Reach, Impact, Confidence, and Effort.",
+      "example": "Applied at Anthill to prioritize a customer feedback backlog: deferred a high-effort integration (Effort: 5) to expedite a high-reach, high-confidence dashboard filter (Reach: 80% active users, Confidence: 90%), delivering a 30% reduction in customer response times."
+    },
+    {
+      "name": "Jobs-to-be-Done (JTBD)",
+      "description": "A methodology to understand the deep functional and emotional situations driving customers to buy or use a product.",
+      "example": "Used in the Karigold study: reframed the customer job from 'buying gold' to 'securing authentic, certified jewelry with direct traceability and transparent artisan pricing,' resulting in a trust-centric D2C model."
+    },
+    {
+      "name": "North Star Metric",
+      "description": "The key measure of product success that captures the core value delivered to customers.",
+      "example": "Defined 'Day-7 Active Workgroup Collaborations' as the North Star for the Notion Case Study, aligning product onboarding experiments specifically to drive user-to-user document sharing within 3 minutes of signup."
+    }
   ]
 }

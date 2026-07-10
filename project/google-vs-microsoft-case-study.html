@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google vs Microsoft — AI PM Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0a0c0f; --panel:#12151a; --panel-2:#15191f; --line:#232a33; --amber:#e8a33d; --cyan:#4fd1c5; --coral:#e8654f; --text:#e9e7e2; --muted:#8b92a0; --muted-2:#5b6270; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--text); font-family:'IBM Plex Sans', sans-serif; line-height:1.6; font-size:16px; }
+  ::selection{ background:var(--amber); color:#0a0c0f; }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; }
+  a{ color:var(--cyan); }
+  .shell{ display:grid; grid-template-columns: 220px 1fr; max-width:1180px; margin:0 auto; }
+  @media (max-width: 860px){ .shell{ grid-template-columns: 1fr; } .rail{ display:none; } }
+  .rail{ position:sticky; top:0; height:100vh; padding:48px 0 48px 32px; border-right:1px solid var(--line); }
+  .rail-trace{ position:relative; padding-left:20px; }
+  .rail-trace::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: linear-gradient(180deg, transparent, var(--amber) 8%, var(--amber) 92%, transparent); opacity:0.5; }
+  .rail a{ display:block; position:relative; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-decoration:none; padding:9px 0; letter-spacing:0.02em; transition: color .15s ease; }
+  .rail a::before{ content:""; position:absolute; left:-20px; top:15px; width:9px; height:9px; border-radius:50%; background:var(--bg); border:1px solid var(--muted-2); }
+  .rail a:hover{ color:var(--amber); } .rail a:hover::before{ border-color:var(--amber); background:var(--amber); }
+  .rail-brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13px; color:var(--text); letter-spacing:0.06em; margin-bottom:28px; text-transform:uppercase; }
+  .rail-brand span{ color:var(--amber); }
+  main{ padding: 0 40px 100px; } @media (max-width: 860px){ main{ padding:0 22px 80px; } }
+  .hero{ padding: 90px 0 60px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em; display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--cyan); display:inline-block; box-shadow: 0 0 8px var(--cyan); }
+  .hero h1{ font-size: clamp(34px, 5vw, 56px); font-weight:700; line-height:1.08; max-width: 800px; }
+  .hero .accent{ color:var(--amber); }
+  .hero-sub{ margin-top:22px; color:var(--muted); font-size:17px; max-width:620px; }
+  .stat-row{ margin-top:48px; display:grid; grid-template-columns: repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
+  .stat{ background:var(--panel); padding:24px 22px; }
+  .stat .num{ font-family:'IBM Plex Mono', monospace; font-size:28px; font-weight:600; color:var(--amber); }
+  .stat .label{ font-size:12.5px; color:var(--muted); margin-top:6px; }
+  section.card{ position:relative; margin: 64px 0; padding: 40px 36px; background:var(--panel); border:1px solid var(--line); }
+  .corner-mark{ position:absolute; width:16px; height:16px; border-color:var(--amber); border-style:solid; border-width:0; }
+  .corner-mark.tl{ top:-1px; left:-1px; border-top-width:2px; border-left-width:2px; }
+  .corner-mark.tr{ top:-1px; right:-1px; border-top-width:2px; border-right-width:2px; }
+  .corner-mark.bl{ bottom:-1px; left:-1px; border-bottom-width:2px; border-left-width:2px; }
+  .corner-mark.br{ bottom:-1px; right:-1px; border-bottom-width:2px; border-right-width:2px; }
+  .sec-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; }
+  section.card h2{ font-size: 26px; margin-bottom:18px; font-weight:600; }
+  section.card p{ color:var(--text); font-size:15.5px; max-width:760px; }
+  section.card p + p{ margin-top:14px; }
+  section.card ul{ margin-top:16px; padding-left:0; list-style:none; }
+  section.card li{ position:relative; padding-left:22px; margin-bottom:12px; color:var(--text); font-size:15px; max-width:740px; }
+  section.card li::before{ content:"▸"; position:absolute; left:0; color:var(--cyan); }
+  .tag{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:11px; padding:4px 9px; border:1px solid var(--line); color:var(--muted); letter-spacing:0.04em; margin-bottom:16px; }
+  .tldr{ border-left:3px solid var(--amber); background: linear-gradient(90deg, rgba(232,163,61,0.07), transparent 60%); }
+  .tldr p{ font-size:16.5px; }
+  .chart-wrap{ margin-top:24px; padding:24px 20px 12px; background:var(--panel-2); border:1px solid var(--line); }
+  .chart-caption{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:12px; text-align:right; }
+  .closer{ margin: 70px 0 0; padding: 44px 36px; text-align:center; border:1px solid var(--amber); background: radial-gradient(ellipse at 50% 0%, rgba(232,163,61,0.08), transparent 70%); }
+  .closer p{ font-family:'Space Grotesk', sans-serif; font-size: clamp(19px, 2.4vw, 25px); font-weight:600; line-height:1.4; color:var(--text); max-width:740px; margin:0 auto; }
+  .closer p .accent{ color:var(--amber); }
+  .closer-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:18px; letter-spacing:0.08em; text-transform:uppercase; }
+  .metric-row{ display:flex; gap:28px; flex-wrap:wrap; margin-top:20px; padding-top:20px; border-top:1px dashed var(--line); }
+  .metric{ min-width:150px; } .metric .v{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:19px; } .metric .k{ font-size:12px; color:var(--muted); margin-top:3px; }
+  .moat-stack{ margin-top:28px; display:flex; flex-direction:column; gap:2px; }
+  .moat-layer{ padding:18px 20px; background:var(--panel-2); border:1px solid var(--line); border-left:3px solid var(--cyan); display:grid; grid-template-columns: 32px 1fr; gap:16px; align-items:start; }
+  .moat-layer .idx{ font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:13px; }
+  .moat-layer h4{ font-family:'Space Grotesk', sans-serif; font-size:15.5px; margin-bottom:6px; color:var(--text); }
+  .moat-layer p{ font-size:14px; color:var(--muted); max-width:680px; }
+  footer{ max-width:1180px; margin:0 auto; padding:30px 40px 60px; color:var(--muted-2); font-size:12px; font-family:'IBM Plex Mono', monospace; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="rail">
+    <div class="rail-brand">Case Study <span>// GOOG-MSFT</span></div>
+    <div class="rail-trace">
+      <a href="#tldr">01 · TL;DR</a>
+      <a href="#problem">02 · The Problem</a>
+      <a href="#context">03 · Context</a>
+      <a href="#lens">04 · The Lens</a>
+      <a href="#ai-angle">05 · AI Angle</a>
+      <a href="#call">06 · My Call</a>
+      <a href="#metrics">07 · Measurement</a>
+    </div>
+  </nav>
+  <main>
+    <div class="hero">
+      <div class="eyebrow">AI Platform Competition</div>
+      <h1>Google vs Microsoft: Two Different Definitions of <span class="accent">Winning</span></h1>
+      <p class="hero-sub">Role simulated: AI Platform Strategy Lead. ChatGPT still has the most users. Gemini is growing the fastest. Copilot barely shows up in web traffic — yet holds a defensible enterprise position. All three "win" by different metrics, which is exactly the problem.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">46.4%</div><div class="label">ChatGPT's user share, first time below 50%</div></div>
+        <div class="stat"><div class="num">27.7%</div><div class="label">Gemini's share, nearly tripled in a year</div></div>
+        <div class="stat"><div class="num">2B+</div><div class="label">users reached via Gemini-powered AI Overviews</div></div>
+      </div>
+    </div>
+
+    <section class="card tldr" id="tldr">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">01 / TL;DR</div>
+      <h2>The AI assistant market fractured — and that's the story.</h2>
+      <p>ChatGPT's share of the AI assistant market fell below 50% for the first time in March 2026, down from a near-monopoly in 2023. Gemini's share nearly tripled — from 5.7% to 27.7% — not by being a better chatbot, but by being pre-installed on Android, embedded in Search's AI Overviews (2B+ monthly users), and bundled into Workspace. Meanwhile Microsoft Copilot barely registers in standalone web traffic (~1-3%) yet Techradar reports Copilot is far more popular than Gemini among CIOs for actual enterprise deployment. Three different distribution strategies, three different scoreboards.</p>
+    </section>
+
+    <section class="card" id="problem">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">02 / The Problem</div>
+      <h2>When the underlying model stops being the differentiator, what do you compete on?</h2>
+      <p>By 2026, frontier model benchmarks had converged — GPQA Diamond scores across leading assistants sit within a few points of each other. When capability becomes commoditized, the strategic question shifts from "whose model is smartest" to "who owns the distribution surface the user is already standing on." Google, Microsoft, and OpenAI each answered that question completely differently, and each answer implies a different long-term business.</p>
+    </section>
+
+    <section class="card" id="context">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">03 / Context — only what matters</div>
+      <h2>Three different games, three different scoreboards</h2>
+      <ul>
+        <li><strong>ChatGPT:</strong> 900M weekly active users, 93% of Fortune 500 use OpenAI products — dominant on brand and first-mover consumer reach, but losing web-traffic share every quarter.</li>
+        <li><strong>Gemini:</strong> 650M–900M monthly users via the app, plus 2B+ through AI Overviews in Search — winning by pre-installation and ecosystem bundling (Android, Workspace, Chrome), not by being sought out directly.</li>
+        <li><strong>Copilot:</strong> ~420M monthly users across surfaces, only ~1-3% of standalone chatbot web traffic — but 74% user satisfaction in enterprise search and native Windows/Office 365 integration make it the default in Microsoft-shops regardless of consumer mindshare.</li>
+        <li>81% of enterprises now run three or more model families concurrently — the "pick one winner" framing that dominated 2023–24 coverage no longer matches how companies actually buy AI.</li>
+      </ul>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 700 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="165" x2="670" y2="165" stroke="#232a33" stroke-width="1"/>
+          <g font-family="IBM Plex Mono" font-size="11" fill="#8b92a0">
+            <rect x="90" y="35" width="50" height="130" fill="#e8654f" opacity="0.8"/>
+            <text x="115" y="185" text-anchor="middle">ChatGPT</text>
+            <text x="115" y="25" text-anchor="middle" fill="#e9e7e2">46%</text>
+
+            <rect x="230" y="80" width="50" height="85" fill="#e8a33d"/>
+            <text x="255" y="185" text-anchor="middle">Gemini</text>
+            <text x="255" y="70" text-anchor="middle" fill="#e9e7e2">28%</text>
+
+            <rect x="370" y="130" width="50" height="35" fill="#4fd1c5" opacity="0.7"/>
+            <text x="395" y="185" text-anchor="middle">Claude</text>
+            <text x="395" y="120" text-anchor="middle" fill="#e9e7e2">10%</text>
+
+            <rect x="510" y="155" width="50" height="10" fill="#8b92a0"/>
+            <text x="535" y="185" text-anchor="middle">Copilot</text>
+            <text x="535" y="145" text-anchor="middle" fill="#e9e7e2">~2%</text>
+          </g>
+        </svg>
+        <div class="chart-caption">Fig. 1 — Global AI assistant user share, Sensor Tower/Similarweb, May 2026 (approx.)</div>
+      </div>
+    </section>
+
+    <section class="card" id="lens">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <span class="tag">LENS: PORTER'S FIVE FORCES — SUBSTITUTES & DISTRIBUTION</span>
+      <div class="sec-label">04 / The Lens</div>
+      <h2>Distribution is doing the work model quality used to do</h2>
+      <div class="moat-stack">
+        <div class="moat-layer">
+          <div class="idx">01</div>
+          <div><h4>Google: pre-installed, not sought out</h4><p>Gemini's growth is inseparable from Android and Search bundling. The threat of substitution is low because switching away from Gemini means opting out of products users didn't choose to install it in.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">02</div>
+          <div><h4>Microsoft: invisible in consumer metrics, entrenched in enterprise</h4><p>Copilot's governance maturity (Purview DLP, sensitivity labels, e-discovery) makes it the safe default for regulated industries — its moat is procurement risk-aversion, not user love.</p></div>
+        </div>
+        <div class="moat-layer">
+          <div class="idx">03</div>
+          <div><h4>OpenAI: brand equity depreciating in real time</h4><p>ChatGPT's 19-point share drop in twelve months shows that first-mover brand recognition alone doesn't hold once credible, well-distributed alternatives exist — the closest thing to a cautionary tale in this case.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="ai-angle">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">05 / The AI Angle</div>
+      <h2>The real battle has moved to "who governs the agent," not "who has the model"</h2>
+      <p>As enterprises adopt three-plus model families simultaneously, the strategic prize shifts from model supremacy to governance and orchestration — who can safely let an AI agent take action across a company's tools without it becoming a compliance nightmare. This is why Microsoft's Copilot, despite trailing badly on consumer web traffic, remains the safest bet for large regulated enterprises: it isn't competing on "best chatbot," it's competing on "least likely to get IT fired."</p>
+    </section>
+
+    <section class="card" id="call">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">06 / My Call</div>
+      <h2>Stop competing for "primary assistant." Compete for a specific workflow.</h2>
+      <p>If I were product-leading any of these three, I would stop measuring success by share-of-chatbot-market — that metric rewards vanity and punishes the companies (like Microsoft) actually winning the higher-value enterprise deals. I'd instead pick one or two vertical workflows (legal document review, financial reconciliation, customer support triage) and make the AI assistant the undisputed best tool for that specific job, rather than a mediocre generalist competing on brand recall.</p>
+      <p><strong>The tradeoff I'd accept:</strong> lower headline user numbers and less press coverage, in exchange for defensible, high-margin revenue in workflows where "good enough" competitors can't dislodge you.</p>
+    </section>
+
+    <section class="card" id="metrics">
+      <div class="corner-mark tl"></div><div class="corner-mark tr"></div><div class="corner-mark bl"></div><div class="corner-mark br"></div>
+      <div class="sec-label">07 / How I'd Measure It</div>
+      <h2>North Star + two supporting signals</h2>
+      <div class="metric-row">
+        <div class="metric"><div class="v">★ North Star</div><div class="k">Task-completion rate for the chosen workflow, not general chatbot session count</div></div>
+        <div class="metric"><div class="v">Signal 01</div><div class="k">Enterprise seat retention after 12 months — proxy for whether the tool became infrastructure or stayed a novelty</div></div>
+        <div class="metric"><div class="v">Signal 02</div><div class="k">% of customers running the assistant alongside a competitor — honest measure of whether you're the default or just one of several</div></div>
+      </div>
+    </section>
+
+    <div class="closer">
+      <p>In AI, the platform that wins isn't the one with the <span class="accent">best model</span> — it's the one already <span class="accent">installed on your phone</span> before you had an opinion.</p>
+      <div class="closer-tag">END OF CASE STUDY // GOOG-MSFT-01</div>
+    </div>
+  </main>
+</div>
+<footer>Case study prepared as an AI Product Management portfolio exercise · Figures sourced from Similarweb, Sensor Tower, First Page Sage, and Gartner reporting, 2026</footer>
+</body>
+</html>
