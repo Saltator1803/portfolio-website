@@ -13,6 +13,7 @@ interface CanvasScrollerProps {
   triggerId: string;
   canvasClassName?: string;
   onFrameUpdate?: (progress: number) => void;
+  scrollEnd?: string;
 }
 
 export default function CanvasScroller({
@@ -21,6 +22,7 @@ export default function CanvasScroller({
   triggerId,
   canvasClassName = "",
   onFrameUpdate,
+  scrollEnd = "bottom bottom",
 }: CanvasScrollerProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -97,7 +99,7 @@ export default function CanvasScroller({
       scrollTrigger: {
         trigger: `#${triggerId}`,
         start: "top top",
-        end: "bottom bottom",
+        end: scrollEnd,
         scrub: 0.5,
         onUpdate: (self) => {
           renderFrame(Math.floor(frameObj.frame));

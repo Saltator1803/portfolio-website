@@ -83,12 +83,12 @@ export default function StrategyVault() {
   return (
     <section 
       id="strategy-vault" 
-      className="relative py-28 bg-background border-b border-luxuryBorder z-20 flex flex-col items-center overflow-hidden"
+      className="relative py-20 bg-background border-b border-luxuryBorder z-20 flex flex-col items-center overflow-hidden"
     >
       {/* Decorative side ambient glow */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-luxuryGold/5 blur-[100px] pointer-events-none" />
 
-      <div className="max-w-6xl w-full px-8 md:px-16 mb-12 flex flex-col md:flex-row justify-between items-baseline gap-4 border-b border-luxuryBorder pb-8 relative z-10">
+      <div className="max-w-6xl w-full px-8 md:px-16 mb-8 flex flex-col md:flex-row justify-between items-baseline gap-4 border-b border-luxuryBorder pb-8 relative z-10">
         <div className="flex flex-col gap-2">
           <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5 animate-pulse text-luxuryGold" />

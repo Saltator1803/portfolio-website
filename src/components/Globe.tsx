@@ -5,7 +5,7 @@ import data from "@/data/profile.json";
 
 export default function Globe() {
   return (
-    <footer id="contact" className="relative h-screen w-full bg-background overflow-hidden flex flex-col justify-between p-8 md:p-20 z-20">
+    <footer id="contact" className="relative w-full bg-background overflow-hidden flex flex-col p-8 md:px-16 md:py-24 z-20 gap-16">
       {/* Visual Ambient Globe Loop Background */}
       <div className="absolute inset-0 pointer-events-none opacity-30 z-0 mix-blend-screen">
         <video
@@ -20,7 +20,7 @@ export default function Globe() {
         </video>
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 mt-20">
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
         <div className="space-y-6">
           <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono">
             / 04 — Let's connect

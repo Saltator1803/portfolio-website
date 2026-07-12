@@ -256,8 +256,8 @@ export default function ResumeBuilder() {
   }, []);
 
   return (
-    <section id="resume-builder" className="relative bg-background py-32 px-8 md:px-20 z-20 flex flex-col items-center">
-      <div className="max-w-4xl text-center space-y-8">
+    <section id="resume-builder" className="relative bg-background py-20 px-8 md:px-20 z-20 flex flex-col items-center">
+      <div className="max-w-5xl text-center space-y-6">
         <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono">
           /Happy to see you
         </h2>
@@ -268,7 +268,7 @@ export default function ResumeBuilder() {
           {data.profile.title}
         </p>
 
-        <div className="pt-6">
+        <div className="pt-4">
           <a
             href="/Sanju_Chowdhury_Product_Resume.pdf"
             download="Sanju_Chowdhury_Product_Resume.pdf"

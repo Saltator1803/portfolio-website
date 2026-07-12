@@ -62,29 +62,29 @@ export default function Projects() {
   // Responsive dimensions state
   const [dimensions, setDimensions] = useState({
     itemWidth: 500,
-    itemHeight: 285,
+    itemHeight: 280,
     sideItemWidth: 320,
-    sideItemHeight: 280,
-    gap: 64,
+    sideItemHeight: 260,
+    gap: 32,
   });
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setDimensions({
-          itemWidth: 290,
-          itemHeight: 180,
-          sideItemWidth: 200,
-          sideItemHeight: 160,
-          gap: 16,
+          itemWidth: 270,
+          itemHeight: 160,
+          sideItemWidth: 180,
+          sideItemHeight: 140,
+          gap: 12,
         });
       } else {
         setDimensions({
-          itemWidth: 540,
-          itemHeight: 310,
-          sideItemWidth: 350,
-          sideItemHeight: 290,
-          gap: 48,
+          itemWidth: 500,
+          itemHeight: 280,
+          sideItemWidth: 320,
+          sideItemHeight: 260,
+          gap: 32,
         });
       }
     };
@@ -141,8 +141,8 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="relative py-32 bg-background overflow-hidden z-20 flex flex-col items-center border-b border-luxuryBorder">
-      <div className="max-w-6xl w-full px-8 md:px-16 mb-16 flex flex-col md:flex-row justify-between items-baseline gap-4 border-b border-luxuryBorder pb-8">
+    <section id="projects" className="relative py-20 bg-background overflow-hidden z-20 flex flex-col items-center border-b border-luxuryBorder">
+      <div className="max-w-6xl w-full px-8 md:px-16 mb-12 flex flex-col md:flex-row justify-between items-baseline gap-4 border-b border-luxuryBorder pb-8">
         <div className="flex flex-col gap-2">
           <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5 animate-pulse text-luxuryGold" />
@@ -165,7 +165,7 @@ export default function Projects() {
         onWheel={handleWheel}
         onPan={handlePan}
         onPanEnd={handlePanEnd}
-        className="relative w-full h-[400px] md:h-[480px] flex items-center justify-center overflow-hidden select-none cursor-grab active:cursor-grabbing touch-action-none"
+        className="relative w-full h-[340px] md:h-[420px] flex items-center justify-center overflow-hidden select-none cursor-grab active:cursor-grabbing touch-action-none"
       >
         {/* Left & Right Edge Blur Overlays */}
         <div className="absolute left-0 top-0 bottom-0 w-[15%] md:w-[25%] backdrop-blur-[4px] pointer-events-none z-20 [mask-image:linear-gradient(to_right,black_0%,transparent_100%)] [WebkitMaskImage:linear-gradient(to_right,black_0%,transparent_100%)]" />
@@ -785,7 +785,7 @@ function PremiumSmearCard({
       <motion.div
         style={{
           position: "absolute",
-          bottom: -45,
+          bottom: -32,
           left: -40,
           right: -40,
           textAlign: "center",

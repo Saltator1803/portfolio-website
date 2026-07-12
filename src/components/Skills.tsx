@@ -340,13 +340,13 @@ export default function Skills() {
         </div>
 
         {/* Glowing Separator Line with Flare */}
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-luxuryBorder to-transparent relative my-8">
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-luxuryBorder to-transparent relative my-6">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-luxuryGold blur-[6px] opacity-75" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-[1.5px] bg-white blur-[2px] opacity-85" />
         </div>
 
         {/* Tight vertical marquee flow without any card containers */}
-        <div className="flex flex-col gap-9 w-full">
+        <div className="flex flex-col gap-8 w-full">
           
           {/* SECTION 1: PRODUCT STRATEGY */}
           <motion.div
@@ -354,7 +354,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="w-full flex flex-col gap-3"
+            className="w-full flex flex-col gap-2"
           >
             {/* Header */}
             <div className="flex justify-between items-center pb-2 border-b border-white/5">
@@ -387,7 +387,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.05 }}
-            className="w-full flex flex-col gap-3"
+            className="w-full flex flex-col gap-2"
           >
             {/* Header */}
             <div className="flex justify-between items-center pb-2 border-b border-white/5">
@@ -420,7 +420,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="w-full flex flex-col gap-3"
+            className="w-full flex flex-col gap-2"
           >
             {/* Header */}
             <div className="flex justify-between items-center pb-2 border-b border-white/5">
@@ -436,7 +436,7 @@ export default function Skills() {
             </div>
 
             {/* Double-row Tool Tickers with 0 padding */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               <WavyTicker 
                 items={track1Tools} 
                 direction="left" 

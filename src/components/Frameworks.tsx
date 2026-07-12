@@ -234,7 +234,7 @@ export default function Frameworks() {
   };
 
   return (
-    <section id="frameworks" className="relative py-24 bg-background border-b border-luxuryBorder z-20 flex flex-col items-center overflow-hidden">
+    <section id="frameworks" className="relative py-20 bg-background border-b border-luxuryBorder z-20 flex flex-col items-center overflow-hidden">
       
       {/* Decorative luxury radial background glows */}
       <div className="absolute top-1/2 left-1/4 w-[450px] h-[450px] rounded-full bg-blue-600/5 blur-[130px] pointer-events-none" />
@@ -243,7 +243,7 @@ export default function Frameworks() {
       <div className="max-w-6xl w-full mx-auto px-8 md:px-16 relative z-10">
         
         {/* Section Header */}
-        <div className="mb-16 flex flex-col md:flex-row justify-between items-baseline gap-4 border-b border-luxuryBorder pb-8">
+        <div className="mb-12 flex flex-col md:flex-row justify-between items-baseline gap-4 border-b border-luxuryBorder pb-8">
           <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5 animate-pulse text-luxuryGold" />
             / 02.5 — Strategic Playbooks
@@ -254,7 +254,7 @@ export default function Frameworks() {
         </div>
 
         {/* Timeline Row Container */}
-        <div className="relative w-full py-10">
+        <div className="relative w-full py-8">
           
           {/* Connecting Horizontal Line (Animates on load) */}
           <div className="absolute top-[83px] left-[60px] right-[60px] h-[1.5px] bg-white/10 z-0 min-w-[960px] lg:min-w-0 pointer-events-none">

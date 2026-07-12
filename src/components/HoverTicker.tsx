@@ -87,7 +87,7 @@ export default function HoverTicker({ items = [], speedSeconds = 35 }: HoverTick
   if (items.length === 0) return null;
 
   return (
-    <div className="w-full relative overflow-hidden py-10 select-none">
+    <div className="w-full relative overflow-hidden py-6 select-none">
       {/* Edge Vignette Fades */}
       <div className="absolute left-0 top-0 bottom-0 w-[12%] bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-[12%] bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
@@ -107,7 +107,7 @@ export default function HoverTicker({ items = [], speedSeconds = 35 }: HoverTick
           dragMomentum={true}
           onDragStart={() => { isDraggingRef.current = true; }}
           onDragEnd={handleDragEnd}
-          className="flex gap-6 w-max"
+          className="flex gap-4 w-max"
         >
           {marqueeItems.map((item, idx) => (
             <motion.a
@@ -117,8 +117,8 @@ export default function HoverTicker({ items = [], speedSeconds = 35 }: HoverTick
               rel="noopener noreferrer"
               className="glass-panel flex-shrink-0 relative overflow-hidden border border-white/5 flex flex-col justify-between p-6 cursor-pointer group/card"
               style={{
-                width: "310px",
-                height: "360px",
+                width: "300px",
+                height: "320px",
                 borderRadius: "20px",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)"
               }}
@@ -153,7 +153,7 @@ export default function HoverTicker({ items = [], speedSeconds = 35 }: HoverTick
                 style={{ backgroundImage: `url(${item.src})` }}
               />
 
-              <div className="space-y-4 relative z-10">
+              <div className="space-y-3 relative z-10">
                 {/* Eyebrow Theme Tag */}
                 <div className="flex items-center gap-1.5">
                   <span 
@@ -180,7 +180,7 @@ export default function HoverTicker({ items = [], speedSeconds = 35 }: HoverTick
               </div>
 
               {/* Footer CTA Link */}
-              <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between relative z-10">
+              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between relative z-10">
                 <span className="text-[9px] text-luxuryMuted font-mono tracking-widest uppercase flex items-center gap-1">
                   <BookOpen className="w-3 h-3 text-luxuryGold" />
                   Strategy Case

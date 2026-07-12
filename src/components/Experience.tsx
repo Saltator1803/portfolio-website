@@ -73,9 +73,10 @@ export default function Experience() {
   const handleThumbnailClick = (index: number) => {
     if (typeof window !== "undefined" && containerRef.current) {
       const containerTop = containerRef.current.offsetTop;
-      const sectionHeight = window.innerHeight;
+      const scrollableHeight = containerRef.current.offsetHeight - window.innerHeight;
+      const targetScrollY = containerTop + (index / (data.experience.length - 1)) * scrollableHeight;
       window.scrollTo({
-        top: containerTop + index * sectionHeight + 50,
+        top: targetScrollY,
         behavior: "smooth",
       });
     }
@@ -85,7 +86,7 @@ export default function Experience() {
     <section 
       ref={containerRef} 
       id="experience" 
-      className="relative h-[400vh] bg-background"
+      className="relative h-[280vh] bg-background"
     >
       {/* Sticky Frame Wrapper */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
@@ -114,7 +115,7 @@ export default function Experience() {
 
         {/* Content Section Overlay */}
         <div className="absolute inset-0 flex items-center justify-center p-6 md:p-12 z-10">
-          <div className="max-w-4xl w-full relative">
+          <div className="max-w-5xl w-full relative">
             <AnimatePresence mode="wait">
               {data.experience.map((exp, index) => {
                 if (activeIndex !== index) return null;
@@ -128,7 +129,7 @@ export default function Experience() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -40, scale: 0.97 }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="glass-panel p-6 md:p-10 rounded-2xl relative overflow-hidden shadow-2xl border border-white/10"
+                    className="glass-panel p-6 md:p-8 rounded-2xl relative overflow-hidden shadow-2xl border border-white/10"
                     style={{
                       boxShadow: `0 0 40px ${themeColor.replace("0.4", "0.08")}`
                     }}
@@ -140,7 +141,7 @@ export default function Experience() {
                     />
 
                     {/* Header Row */}
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6 border-b border-white/5 pb-5">
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-4 border-b border-white/5 pb-4">
                       <div>
                         <div className="flex items-center gap-2">
                           <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono flex items-center gap-1.5">
@@ -167,13 +168,13 @@ export default function Experience() {
                     </div>
 
                     {/* Job Description */}
-                    <p className="text-sm md:text-base text-luxuryMuted leading-relaxed font-light mb-6">
+                    <p className="text-sm md:text-base text-luxuryMuted leading-relaxed font-light mb-4">
                       {exp.description}
                     </p>
 
                     {/* Details Bullet Points */}
                     {exp.bulletPoints && (
-                      <ul className="space-y-3 mb-8 border-l border-white/5 pl-4 md:pl-6 max-h-[30vh] overflow-y-auto">
+                      <ul className="space-y-2 mb-6 border-l border-white/5 pl-4 md:pl-6 max-h-[30vh] overflow-y-auto">
                         {exp.bulletPoints.map((bullet, idx) => (
                           <li
                             key={idx}
@@ -206,7 +207,7 @@ export default function Experience() {
         </div>
 
         {/* Floating Interactive Dock (Framer style scroller navigation) */}
-        <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-30 p-3 rounded-2xl bg-black/60 border border-white/10 backdrop-blur-md shadow-2xl">
+        <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 flex flex-col items-center gap-6 z-30 p-3 rounded-2xl bg-black/60 border border-white/10 backdrop-blur-md shadow-2xl">
           <span className="text-[8px] font-mono text-luxuryMuted tracking-wider uppercase writing-vertical select-none mb-1">
             Timeline
           </span>

@@ -18,9 +18,9 @@ export default function Education() {
   // Card 1 (MCA) goes top-right
   // Card 2 (B.Sc) goes bottom-center
   const scatterCoords = [
-    { x: -350, y: -80, scale: 0.95, rotate: -5 },
-    { x: 350, y: -80, scale: 0.95, rotate: 5 },
-    { x: 0, y: 220, scale: 0.95, rotate: 2 }
+    { x: -320, y: -60, scale: 0.95, rotate: -5 },
+    { x: 320, y: -60, scale: 0.95, rotate: 5 },
+    { x: 0, y: 160, scale: 0.95, rotate: 2 }
   ];
 
   const educationData = [
@@ -54,13 +54,13 @@ export default function Education() {
     <section 
       ref={containerRef} 
       id="education" 
-      className="relative h-[180vh] bg-background z-20 border-b border-luxuryBorder"
+      className="relative h-[140vh] bg-background z-20 border-b border-luxuryBorder"
     >
       {/* Sticky Frame Wrapper */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center items-center">
         
         {/* Section Header */}
-        <div className="absolute top-24 left-8 md:left-16 flex flex-col gap-2 max-w-6xl w-full border-b border-luxuryBorder/30 pb-6 pointer-events-none">
+        <div className="absolute top-16 left-8 md:left-16 flex flex-col gap-2 max-w-6xl w-full border-b border-luxuryBorder/30 pb-6 pointer-events-none">
           <h2 className="text-xs tracking-ultraWide text-luxuryGold uppercase font-mono flex items-center gap-2">
             <School className="w-3.5 h-3.5 text-luxuryGold" />
             / 03 — Academic Foundation
@@ -78,7 +78,7 @@ export default function Education() {
         </div>
 
         {/* 3D Scatter Container */}
-        <div className="relative w-full max-w-4xl h-[400px] flex items-center justify-center overflow-visible">
+        <div className="relative w-full max-w-4xl h-[350px] flex items-center justify-center overflow-visible">
           {educationData.map((edu, idx) => {
             const coord = scatterCoords[idx];
 
