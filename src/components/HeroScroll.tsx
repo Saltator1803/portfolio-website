@@ -133,12 +133,15 @@ export default function HeroScroll() {
                 </span>
               </div>
 
-              <div className="flex flex-col gap-4 text-xs md:text-sm leading-relaxed text-luxuryMuted font-light max-w-xl">
+              <div className="flex flex-col gap-6 text-[15px] md:text-[17px] leading-[1.8] text-zinc-300 font-light max-w-xl">
                 <p>
-                  I started in software development, writing logic, and optimizing database queries. But I realized that the cleanest code is meaningless if it builds something nobody wants.
+                  I started my journey as a Software Engineer, where I learned how to build technology from the ground up. Over time, I realized that great technology only matters when it solves meaningful problems for real people. That curiosity naturally led me into Product Management.
                 </p>
                 <p>
-                  Now, I apply that engineering rigor to product management. I focus on validating problems, designing GTM strategies, and leading AI initiatives that deliver measurable value.
+                  Today, I work at the intersection of technology, business, AI, and user experience. I enjoy validating ideas, shaping product strategy, building AI-powered solutions, and turning complex challenges into simple, impactful products that people genuinely love.
+                </p>
+                <p>
+                  Beyond Product Management, I'm equally passionate about Product Marketing. I believe building a great product is only half the journey—the other half is positioning it, telling a compelling story, and ensuring it reaches the people it's built for. My goal is to build products that create real impact while bringing together technology, strategy, and growth.
                 </p>
               </div>
             </div>
@@ -150,20 +153,20 @@ export default function HeroScroll() {
                 <div className="absolute inset-0 bg-radial-[circle_at_center,rgba(197,168,128,0.02)_0%,rgba(0,0,0,0)_70%] pointer-events-none" />
                 
                 <div className="flex flex-col z-10">
-                  <span className="text-xl md:text-2xl font-light text-luxuryGold font-mono">₹1.2L+</span>
-                  <span className="text-[9px] tracking-wider text-luxuryMuted font-mono uppercase">First Customer Sale</span>
+                  <span className="text-xl md:text-2xl font-light text-luxuryGold font-mono">400K+ rupee</span>
+                  <span className="text-[9px] tracking-wider text-luxuryMuted font-mono uppercase">SALES FROM COLLEGE STARTUP</span>
                 </div>
                 <div className="flex flex-col z-10">
                   <span className="text-xl md:text-2xl font-light text-luxuryGold font-mono">100+</span>
-                  <span className="text-[9px] tracking-wider text-luxuryMuted font-mono uppercase">User Validations</span>
+                  <span className="text-[9px] tracking-wider text-luxuryMuted font-mono uppercase">USER VALIDATIONS</span>
                 </div>
                 <div className="flex flex-col z-10">
-                  <span className="text-xl md:text-2xl font-light text-luxuryGold font-mono">3+</span>
-                  <span className="text-[9px] tracking-wider text-luxuryMuted font-mono uppercase">Products Built</span>
+                  <span className="text-xl md:text-2xl font-light text-luxuryGold font-mono">6+</span>
+                  <span className="text-[9px] tracking-wider text-luxuryMuted font-mono uppercase">PRODUCTS BUILT</span>
                 </div>
                 <div className="flex flex-col z-10">
                   <span className="text-xl md:text-2xl font-light text-luxuryGold font-mono">MBA</span>
-                  <span className="text-[9px] tracking-wider text-luxuryMuted font-mono uppercase">Tech Management</span>
+                  <span className="text-[9px] tracking-wider text-luxuryMuted font-mono uppercase">TECH MANAGEMENT</span>
                 </div>
               </div>
             </div>
